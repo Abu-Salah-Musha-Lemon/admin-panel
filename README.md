@@ -1,4 +1,4 @@
-#🚀ASML-ERP Dashboard — Frontend System
+#ASML-ERP Dashboard — Frontend System
 
 A modern, fully responsive **ERP dashboard UI** built with pure HTML, CSS, and JavaScript.  
 Designed for scalability and ready for backend integration with any framework.
@@ -22,6 +22,7 @@ Designed for scalability and ready for backend integration with any framework.
 
 ## 📁 Project Structure
 
+```
 erp-dashboard/
 ├── index.html          ← Executive Dashboard (KPIs, charts, activity)
 ├── login.html          ← Login page with demo credentials + SSO buttons
@@ -48,6 +49,8 @@ erp-dashboard/
 └── js/
 ├── app.js      ← Core logic, charts, navigation
 └── global.js   ← Search, dark mode, shortcuts
+
+````
 
 ---
 
