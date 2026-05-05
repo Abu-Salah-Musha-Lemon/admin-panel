@@ -9,12 +9,12 @@
 /* ---- CSS VARIABLES ---------------------------------------- */
 :root {
   /* 60% — Neutral Background */
-  --bg-base:        #F0F2F7;
+  --bg-base:        #f1f5f9;
   --bg-card:        #FFFFFF;
   --bg-hover:       #E8EBF3;
 
   /* 30% — Sidebar / Container Layer */
-  --sidebar-bg:     #0D1321;
+  --sidebar-bg:     #1e293b;
   --sidebar-width:  260px;
   --sidebar-collapsed: 68px;
   --topbar-height:  60px;
