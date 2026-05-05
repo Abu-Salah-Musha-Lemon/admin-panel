@@ -1,9 +1,4 @@
-Here’s a **fully polished, professional README.md** with everything included (preview, tech stack, author, license, etc.). You can copy-paste this directly:
-
----
-
-```md
-# 🚀 ASML-ERP Dashboard — Frontend System
+#🚀 ASML-ERP Dashboard — Frontend System
 
 A modern, fully responsive **ERP dashboard UI** built with pure HTML, CSS, and JavaScript.  
 Designed for scalability and ready for backend integration with any framework.
