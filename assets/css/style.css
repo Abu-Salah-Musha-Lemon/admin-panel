@@ -545,22 +545,22 @@ body.sidebar-collapsed .main-content {
 /* ============================================================
    PAGE HEADER
    ============================================================ */
-/* .page-header {
+.page-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 24px;
   flex-wrap: wrap;
   gap: 16px;
-} */
-.page-header {
+}
+/* .page-header {
   display: grid;
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 24px;
   flex-wrap: wrap;
   gap: 16px;
-}
+} */
 
 .page-title {
   font-family: var(--font-display);
