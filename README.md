@@ -145,3 +145,6 @@ Compatible backends: **Laravel**, **Django**, **Node.js/Express**, **FastAPI**, 
 ---
 
 *ASML-ERP Frontend — Ready for backend integration.*
+---
+## 🚀 Live Demo
+👉 [Click here to view the project](https://abu-salah-musha-lemon.github.io/admin-panel/)
