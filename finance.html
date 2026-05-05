@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finance — ASML-ERP</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div id="toastWrap" class="position-fixed bottom-0 end-0 p-3" style="z-index:9999;"></div>
+<div class="erp-wrapper">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo"><div class="logo-icon">N</div><span class="logo-text">ASML -  ERP</span></div>
+    <nav class="sidebar-nav"><ul style="list-style:none;padding:0;margin:0;">
+      <li class="nav-section-label">Main</li>
+      <li class="nav-item"><a href="index.html" class="nav-link" data-tooltip="Dashboard"><i class="bi bi-grid-1x2-fill nav-icon"></i><span class="nav-label">Dashboard</span></a></li>
+      <li class="nav-section-label">Operations</li>
+      <li class="nav-item"><a href="sales.html" class="nav-link" data-tooltip="Sales"><i class="bi bi-graph-up-arrow nav-icon"></i><span class="nav-label">Sales</span></a></li>
+      <li class="nav-item"><a href="purchase.html" class="nav-link" data-tooltip="Purchase"><i class="bi bi-bag-fill nav-icon"></i><span class="nav-label">Purchase</span></a></li>
+      <li class="nav-item"><a href="inventory.html" class="nav-link" data-tooltip="Inventory"><i class="bi bi-boxes nav-icon"></i><span class="nav-label">Inventory</span></a></li>
+      <li class="nav-item"><a href="warehouse.html" class="nav-link" data-tooltip="Warehouse"><i class="bi bi-building nav-icon"></i><span class="nav-label">Warehouse</span></a></li>
+      <li class="nav-item"><a href="ecommerce.html" class="nav-link" data-tooltip="E-Commerce"><i class="bi bi-cart4 nav-icon"></i><span class="nav-label">E-Commerce</span></a></li>
+      <li class="nav-section-label">People &amp; Finance</li>
+      <li class="nav-item"><a href="hrms.html" class="nav-link" data-tooltip="HRMS"><i class="bi bi-people-fill nav-icon"></i><span class="nav-label">HRMS</span></a></li>
+      <li class="nav-item"><a href="crm.html" class="nav-link" data-tooltip="CRM"><i class="bi bi-person-lines-fill nav-icon"></i><span class="nav-label">CRM</span></a></li>
+      <li class="nav-item"><a href="finance.html" class="nav-link" data-tooltip="Finance"><i class="bi bi-wallet2 nav-icon"></i><span class="nav-label">Finance</span></a></li>
+      <li class="nav-section-label">Intelligence</li>
+      <li class="nav-item"><a href="reports.html" class="nav-link" data-tooltip="Reports"><i class="bi bi-bar-chart-fill nav-icon"></i><span class="nav-label">Reports</span></a></li>
+      <li class="nav-section-label">System</li>
+      <li class="nav-item"><a href="settings.html" class="nav-link" data-tooltip="Settings"><i class="bi bi-gear-fill nav-icon"></i><span class="nav-label">Settings</span></a></li>
+      <li class="nav-item"><a href="#" class="nav-link" data-tooltip="Logout"><i class="bi bi-box-arrow-left nav-icon"></i><span class="nav-label">Logout</span></a></li>
+    </ul></nav>
+    <div class="sidebar-footer"><div class="sidebar-user"><div class="user-avatar">AD</div><div class="user-info"><div class="user-name">Admin User</div><div class="user-role">Super Admin</div></div></div></div>
+  </aside>
+
+  <div class="main-content">
+    <header class="topbar">
+      <button class="topbar-toggle" id="sidebarToggle"><i class="bi bi-list" style="font-size:18px;"></i></button>
+      <div class="topbar-breadcrumb"><span class="breadcrumb-trail text-muted-erp">People & Finance</span><i class="bi bi-chevron-right text-muted-erp" style="font-size:10px;"></i><span class="current-page">Finance</span></div>
+      <div class="topbar-actions">
+        <div class="dropdown"><button class="topbar-btn" data-bs-toggle="dropdown"><i class="bi bi-bell" style="font-size:14px;"></i><span class="notif-badge"></span></button><ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item" href="#">3 invoices overdue</a></li></ul></div>
+        <div class="dropdown"><button class="topbar-profile" data-bs-toggle="dropdown"><div class="profile-avatar">AD</div><span class="profile-name">Admin</span><i class="bi bi-chevron-down" style="font-size:10px;color:var(--text-muted);"></i></button><ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item" href="settings.html"><i class="bi bi-person"></i> Profile</a></li><li><hr class="dropdown-divider"></li><li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-left"></i> Logout</a></li></ul></div>
+      </div>
+    </header>
+
+    <main class="page-content">
+      <div class="page-header">
+        <div><h1 class="page-title">Finance & Accounting</h1><p class="page-subtitle">Invoices, payments, expenses, and P&amp;L overview.</p></div>
+        <div class="d-flex gap-2">
+          <button class="btn-erp btn-outline btn-sm" data-bs-toggle="modal" data-bs-target="#addExpenseModal"><i class="bi bi-plus"></i> Add Expense</button>
+          <button class="btn-erp btn-primary" data-bs-toggle="modal" data-bs-target="#addInvoiceModal"><i class="bi bi-plus-lg"></i> Create Invoice</button>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="row g-3 mb-4">
+        <div class="col-md-3"><div class="kpi-card" style="--kpi-color:#22C55E;"><div class="kpi-icon" style="background:#DCFCE7;color:#16A34A;"><i class="bi bi-graph-up"></i></div><div class="kpi-info"><div class="kpi-value">$284,590</div><div class="kpi-label">Total Revenue</div><div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> 12.4%</div></div></div></div>
+        <div class="col-md-3"><div class="kpi-card" style="--kpi-color:#EF4444;"><div class="kpi-icon" style="background:#FEE2E2;color:#DC2626;"><i class="bi bi-arrow-down-circle"></i></div><div class="kpi-info"><div class="kpi-value">$253,130</div><div class="kpi-label">Total Expenses</div><div class="kpi-change down"><i class="bi bi-arrow-down-right"></i> 4.2%</div></div></div></div>
+        <div class="col-md-3"><div class="kpi-card" style="--kpi-color:#3B82F6;"><div class="kpi-icon" style="background:#DBEAFE;color:#2563EB;"><i class="bi bi-receipt"></i></div><div class="kpi-info"><div class="kpi-value">$48,220</div><div class="kpi-label">Outstanding</div><div class="kpi-change down"><i class="bi bi-arrow-down-right"></i> 3 overdue</div></div></div></div>
+        <div class="col-md-3"><div class="kpi-card" style="--kpi-color:#8B5CF6;"><div class="kpi-icon" style="background:#EDE9FE;color:#7C3AED;"><i class="bi bi-bank"></i></div><div class="kpi-info"><div class="kpi-value">$31,460</div><div class="kpi-label">Net Profit</div><div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> 18.7% margin</div></div></div></div>
+      </div>
+
+      <!-- Finance Tabs -->
+      <ul class="nav nav-tabs mb-4">
+        <li class="nav-item"><a class="nav-link active" href="#" onclick="showFinTab('invoices',this);return false;" style="font-family:var(--font-display);font-size:13px;font-weight:600;">Invoices</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" onclick="showFinTab('payments',this);return false;" style="font-family:var(--font-display);font-size:13px;font-weight:600;">Payments</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" onclick="showFinTab('expenses',this);return false;" style="font-family:var(--font-display);font-size:13px;font-weight:600;">Expenses</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" onclick="showFinTab('pl',this);return false;" style="font-family:var(--font-display);font-size:13px;font-weight:600;">P&amp;L Summary</a></li>
+      </ul>
+
+      <!-- Invoices -->
+      <div id="tab-invoices">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Invoices</h3>
+            <div class="d-flex gap-2">
+              <div class="search-box"><i class="bi bi-search search-icon"></i><input type="text" class="form-control form-control-sm" placeholder="Invoice ID, customer..."></div>
+              <select class="form-select form-select-sm" style="width:auto;"><option>All Status</option><option>Paid</option><option>Pending</option><option>Overdue</option><option>Draft</option></select>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table class="erp-table">
+              <thead><tr><th>Invoice</th><th>Customer</th><th>Issue Date</th><th>Due Date</th><th>Amount</th><th>Paid</th><th>Balance</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td><strong>INV-3320</strong></td><td>Apex Solutions</td><td>May 1, 2026</td><td>May 31, 2026</td><td>$45,000</td><td>$45,000</td><td style="color:var(--success);">$0</td><td><span class="badge-status badge-success">Paid</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm" title="View"><i class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm" title="PDF"><i class="bi bi-file-pdf"></i></button></div></td></tr>
+                <tr><td><strong>INV-3319</strong></td><td>GlobalNet Inc.</td><td>Apr 15, 2026</td><td>May 15, 2026</td><td>$210,000</td><td>$150,000</td><td style="color:var(--warning);font-weight:600;">$60,000</td><td><span class="badge-status badge-warning">Partial</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-send"></i></button></div></td></tr>
+                <tr><td><strong>INV-3318</strong></td><td>Aurora Tech</td><td>Apr 1, 2026</td><td>May 1, 2026</td><td>$28,400</td><td>$0</td><td style="color:var(--danger);font-weight:600;">$28,400</td><td><span class="badge-status badge-danger">Overdue</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm" onclick="Utils.showToast('Payment reminder sent!','info')"><i class="bi bi-bell"></i></button></div></td></tr>
+                <tr><td><strong>INV-3317</strong></td><td>Skyline Group</td><td>May 2, 2026</td><td>Jun 2, 2026</td><td>$89,000</td><td>$89,000</td><td style="color:var(--success);">$0</td><td><span class="badge-status badge-success">Paid</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-file-pdf"></i></button></div></td></tr>
+                <tr><td><strong>INV-3316</strong></td><td>Cascade Partners</td><td>May 3, 2026</td><td>Jun 3, 2026</td><td>$14,600</td><td>$0</td><td style="color:var(--text-muted);">$14,600</td><td><span class="badge-status badge-neutral">Draft</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-pencil"></i></button><button class="btn-erp btn-ghost btn-sm" onclick="Utils.showToast('Invoice sent!','success')"><i class="bi bi-send"></i></button></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payments -->
+      <div id="tab-payments" style="display:none;">
+        <div class="card">
+          <div class="card-header"><h3 class="card-title">Payment Transactions</h3><button class="btn-erp btn-primary btn-sm" onclick="Utils.showToast('Recording payment...','info')"><i class="bi bi-plus"></i> Record Payment</button></div>
+          <div class="table-wrapper">
+            <table class="erp-table">
+              <thead><tr><th>Txn ID</th><th>Customer/Vendor</th><th>Date</th><th>Amount</th><th>Method</th><th>Reference</th><th>Type</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td><strong>#TXN-9821</strong></td><td>Apex Solutions</td><td>May 1, 2026</td><td style="color:var(--success);font-weight:600;">+$45,000</td><td>Bank Transfer</td><td>INV-3320</td><td><span class="badge-status badge-success">Received</span></td><td><span class="badge-status badge-success">Cleared</span></td></tr>
+                <tr><td><strong>#TXN-9820</strong></td><td>TechSupply Co.</td><td>Apr 30, 2026</td><td style="color:var(--danger);font-weight:600;">-$28,400</td><td>Bank Transfer</td><td>PO-2888</td><td><span class="badge-status badge-danger">Paid</span></td><td><span class="badge-status badge-success">Cleared</span></td></tr>
+                <tr><td><strong>#TXN-9819</strong></td><td>Skyline Group</td><td>May 2, 2026</td><td style="color:var(--success);font-weight:600;">+$89,000</td><td>Wire Transfer</td><td>INV-3317</td><td><span class="badge-status badge-success">Received</span></td><td><span class="badge-status badge-success">Cleared</span></td></tr>
+                <tr><td><strong>#TXN-9818</strong></td><td>GlobalNet Inc.</td><td>Apr 28, 2026</td><td style="color:var(--success);font-weight:600;">+$150,000</td><td>SWIFT</td><td>INV-3319</td><td><span class="badge-status badge-success">Received</span></td><td><span class="badge-status badge-warning">Pending</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expenses -->
+      <div id="tab-expenses" style="display:none;">
+        <div class="row g-3 mb-4">
+          <div class="col-md-4"><div class="kpi-card" style="--kpi-color:#EF4444;"><div class="kpi-icon" style="background:#FEE2E2;color:#DC2626;"><i class="bi bi-people"></i></div><div class="kpi-info"><div class="kpi-value">$124,000</div><div class="kpi-label">Payroll (48.9%)</div></div></div></div>
+          <div class="col-md-4"><div class="kpi-card" style="--kpi-color:#F59E0B;"><div class="kpi-icon" style="background:#FEF3C7;color:#D97706;"><i class="bi bi-lightning"></i></div><div class="kpi-info"><div class="kpi-value">$84,200</div><div class="kpi-label">Operations (33.2%)</div></div></div></div>
+          <div class="col-md-4"><div class="kpi-card" style="--kpi-color:#8B5CF6;"><div class="kpi-icon" style="background:#EDE9FE;color:#7C3AED;"><i class="bi bi-three-dots"></i></div><div class="kpi-info"><div class="kpi-value">$44,930</div><div class="kpi-label">Other (17.9%)</div></div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3 class="card-title">Expense Records</h3></div>
+          <div class="table-wrapper">
+            <table class="erp-table">
+              <thead><tr><th>Date</th><th>Category</th><th>Description</th><th>Submitted By</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td>May 3, 2026</td><td>Travel</td><td>Flight NYC-LA for client meeting</td><td>Alice Johnson</td><td>$840</td><td><span class="badge-status badge-success">Approved</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-eye"></i></button></div></td></tr>
+                <tr><td>May 2, 2026</td><td>Software</td><td>Adobe Creative Suite annual</td><td>Emma Scott</td><td>$600</td><td><span class="badge-status badge-success">Approved</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-eye"></i></button></div></td></tr>
+                <tr><td>May 1, 2026</td><td>Office</td><td>Stationery and supplies Q2</td><td>David Kim</td><td>$280</td><td><span class="badge-status badge-warning">Pending</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm" onclick="Utils.showToast('Expense approved!','success')"><i class="bi bi-check-lg"></i></button><button class="btn-erp btn-danger-ghost btn-sm"><i class="bi bi-x-lg"></i></button></div></td></tr>
+                <tr><td>Apr 30, 2026</td><td>Marketing</td><td>Social media ads campaign</td><td>Emma Scott</td><td>$2,400</td><td><span class="badge-status badge-success">Approved</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-eye"></i></button></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- P&L Summary -->
+      <div id="tab-pl" style="display:none;">
+        <div class="row g-3">
+          <div class="col-xl-8">
+            <div class="card">
+              <div class="card-header"><h3 class="card-title">Profit & Loss — 2026</h3></div>
+              <div class="card-body"><div class="chart-container" style="height:300px;"><canvas id="plChart"></canvas></div></div>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            <div class="card">
+              <div class="card-header"><h3 class="card-title">P&L Summary (MTD)</h3></div>
+              <div class="card-body">
+                <table style="width:100%;font-size:13px;">
+                  <tbody>
+                    <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 0;color:var(--text-secondary);">Gross Revenue</td><td style="text-align:right;font-weight:600;">$284,590</td></tr>
+                    <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 0;color:var(--text-secondary);">Cost of Goods Sold</td><td style="text-align:right;font-weight:600;color:var(--danger);">($142,800)</td></tr>
+                    <tr style="border-bottom:2px solid var(--border);"><td style="padding:10px 0;font-weight:700;">Gross Profit</td><td style="text-align:right;font-weight:700;color:var(--success);">$141,790</td></tr>
+                    <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 0;color:var(--text-secondary);">Payroll Expenses</td><td style="text-align:right;font-weight:600;color:var(--danger);">($74,400)</td></tr>
+                    <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 0;color:var(--text-secondary);">Operating Expenses</td><td style="text-align:right;font-weight:600;color:var(--danger);">($28,600)</td></tr>
+                    <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 0;color:var(--text-secondary);">Marketing</td><td style="text-align:right;font-weight:600;color:var(--danger);">($7,330)</td></tr>
+                    <tr style="border-bottom:2px solid var(--text-primary);"><td style="padding:10px 0;font-family:var(--font-display);font-weight:800;font-size:14px;">Net Profit</td><td style="text-align:right;font-family:var(--font-display);font-weight:800;font-size:14px;color:var(--success);">$31,460</td></tr>
+                    <tr><td style="padding:10px 0;color:var(--text-muted);font-size:12px;">Profit Margin</td><td style="text-align:right;font-size:12px;color:var(--success);font-weight:600;">11.1%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="page-footer"><span>© 2026 ASML -  ERP</span><span>Finance Module v3.2</span></footer>
+  </div>
+</div>
+
+<!-- Create Invoice Modal -->
+<div class="modal fade" id="addInvoiceModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Create Invoice</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Customer</label><select class="form-select"><option>Select customer...</option><option>Apex Solutions</option><option>GlobalNet Inc.</option></select></div>
+          <div class="col-md-6"><label class="form-label">Due Date</label><input type="date" class="form-control"></div>
+          <div class="col-md-6"><label class="form-label">Currency</label><select class="form-select"><option>USD</option><option>EUR</option><option>GBP</option></select></div>
+          <div class="col-md-6"><label class="form-label">Tax Rate (%)</label><input type="number" class="form-control" value="10"></div>
+          <div class="col-12"><label class="form-label">Line Items</label>
+            <table class="erp-table" style="border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;">
+              <thead><tr><th>Description</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr></thead>
+              <tbody><tr><td><input type="text" class="form-control form-control-sm" placeholder="Service or product"></td><td><input type="number" class="form-control form-control-sm" value="1"></td><td><input type="number" class="form-control form-control-sm" value="0.00"></td><td>$0.00</td></tr></tbody>
+            </table>
+            <button class="btn-erp btn-ghost btn-sm mt-2"><i class="bi bi-plus"></i> Add Line</button>
+          </div>
+          <div class="col-12"><label class="form-label">Notes</label><textarea class="form-control" rows="2" placeholder="Payment instructions or notes..."></textarea></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-erp btn-outline" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn-erp btn-ghost" onclick="Utils.showToast('Invoice saved as draft','info');bootstrap.Modal.getInstance(document.getElementById('addInvoiceModal')).hide();">Save Draft</button>
+        <button class="btn-erp btn-primary" onclick="Utils.showToast('Invoice sent to customer!');bootstrap.Modal.getInstance(document.getElementById('addInvoiceModal')).hide();">Send Invoice</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Expense Modal -->
+<div class="modal fade" id="addExpenseModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Add Expense</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Category</label><select class="form-select"><option>Travel</option><option>Software</option><option>Office</option><option>Marketing</option><option>Payroll</option><option>Utilities</option></select></div>
+          <div class="col-md-6"><label class="form-label">Amount</label><input type="number" class="form-control" placeholder="0.00"></div>
+          <div class="col-12"><label class="form-label">Description</label><input class="form-control" placeholder="Expense description"></div>
+          <div class="col-md-6"><label class="form-label">Date</label><input type="date" class="form-control"></div>
+          <div class="col-md-6"><label class="form-label">Submitted By</label><select class="form-select"><option>Admin User</option><option>Alice Johnson</option><option>Bob Martinez</option></select></div>
+          <div class="col-12"><label class="form-label">Receipt</label><input type="file" class="form-control"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-erp btn-outline" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn-erp btn-primary" onclick="Utils.showToast('Expense submitted for approval!');bootstrap.Modal.getInstance(document.getElementById('addExpenseModal')).hide();">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/global.js"></script>
+<script>
+function showFinTab(tab, el) {
+  ['invoices','payments','expenses','pl'].forEach(t => { document.getElementById('tab-'+t).style.display = t===tab?'':'none'; });
+  document.querySelectorAll('.nav-tabs .nav-link').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+  if (tab === 'pl' && !window._plChartDone) {
+    window._plChartDone = true;
+    setTimeout(() => {
+      ChartHelper.barChart(document.getElementById('plChart').getContext('2d'),
+        ['Jan','Feb','Mar','Apr','May'],
+        [
+          { label:'Revenue', data:[180000,210000,195000,260000,284590], backgroundColor:'#22C55E' },
+          { label:'Expenses', data:[162000,188000,174000,228000,253130], backgroundColor:'#EF4444' },
+          { label:'Net Profit', data:[18000,22000,21000,32000,31460], backgroundColor:'#F5A623' }
+        ]
+      );
+    }, 50);
+  }
+}
+</script>
+</body>
+</html>

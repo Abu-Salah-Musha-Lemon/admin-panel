@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — ASML-ERP</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      background: #0D1321;
+      display: flex;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .login-left {
+      width: 55%;
+      min-height: 100vh;
+      background: #0D1321;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-left::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(245, 166, 35, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .login-left::after {
+      content: '';
+      position: absolute;
+      bottom: -200px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .login-right {
+      width: 45%;
+      min-height: 100vh;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 48px;
+      position: relative;
+    }
+
+    .login-form-wrap {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .stat-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 20px 24px;
+      backdrop-filter: blur(8px);
+    }
+
+    .login-input {
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      width: 100%;
+      transition: var(--transition);
+      background: #FAFBFF;
+    }
+
+    .login-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.15);
+    }
+
+    .login-input-wrap {
+      position: relative;
+    }
+
+    .login-input-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    .login-input-wrap .login-input {
+      padding-left: 38px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 15px;
+    }
+
+    .btn-login {
+      width: 100%;
+      background: var(--accent);
+      color: #0D1321;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-login:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(245, 166, 35, 0.35);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: 12px;
+      margin: 20px 0;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .sso-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 10px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+
+    .sso-btn:hover {
+      background: var(--bg-base);
+    }
+
+    .module-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+      margin: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .login-left {
+        display: none;
+      }
+
+      .login-right {
+        width: 100%;
+        padding: 40px 24px;
+      }
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .floating {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .floating-delay {
+      animation: float 4s ease-in-out 1.5s infinite;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="toastWrap" class="position-fixed bottom-0 end-0 p-3" style="z-index:9999;"></div>
+
+  <!-- LEFT PANEL -->
+  <div class="login-left">
+    <div style="position:relative;z-index:1;width:100%;max-width:520px;">
+
+      <!-- Logo -->
+      <div class="d-flex align-items-center gap-3 mb-5">
+        <div
+          style="width:44px;height:44px;background:var(--accent);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:20px;color:#0D1321;">
+          N</div>
+        <span style="font-family:var(--font-display);font-weight:800;font-size:22px;color:#FFFFFF;">NexaERP</span>
+      </div>
+
+      <!-- Hero text -->
+      <h1
+        style="font-family:var(--font-display);font-weight:800;font-size:42px;color:#FFFFFF;line-height:1.15;margin-bottom:16px;">
+        Run your entire<br><span style="color:var(--accent);">business</span> from<br>one platform.
+      </h1>
+      <p style="color:rgba(255,255,255,0.55);font-size:15px;line-height:1.7;max-width:420px;margin-bottom:36px;">
+        Sales, purchasing, inventory, HR, CRM, finance, and more — unified in a single intelligent ERP system.
+      </p>
+
+      <!-- Module chips -->
+      <div class="mb-5">
+        <div class="module-chip"><i class="bi bi-graph-up-arrow"></i> Sales</div>
+        <div class="module-chip"><i class="bi bi-boxes"></i> Inventory</div>
+        <div class="module-chip"><i class="bi bi-people"></i> HRMS</div>
+        <div class="module-chip"><i class="bi bi-person-lines-fill"></i> CRM</div>
+        <div class="module-chip"><i class="bi bi-wallet2"></i> Finance</div>
+        <div class="module-chip"><i class="bi bi-cart4"></i> E-Commerce</div>
+        <div class="module-chip"><i class="bi bi-building"></i> Warehouse</div>
+        <div class="module-chip"><i class="bi bi-bar-chart-fill"></i> Reports</div>
+      </div>
+
+      <!-- Stats -->
+      <div class="row g-3">
+        <div class="col-4">
+          <div class="stat-box floating">
+            <div style="font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--accent);">342</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.5);">Active Employees</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-box floating-delay">
+            <div style="font-family:var(--font-display);font-size:28px;font-weight:800;color:#22C55E;">$284K</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.5);">Monthly Revenue</div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-box floating">
+            <div style="font-family:var(--font-display);font-size:28px;font-weight:800;color:#3B82F6;">1,847</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.5);">Orders This Month</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL — FORM -->
+  <div class="login-right">
+    <div class="login-form-wrap">
+
+      <!-- Mobile logo -->
+      <div class="d-flex align-items-center gap-2 mb-4 d-md-none">
+        <div
+          style="width:36px;height:36px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;color:#0D1321;">
+          N</div>
+        <span style="font-family:var(--font-display);font-weight:800;font-size:18px;">NexaERP</span>
+      </div>
+
+      <div
+        style="font-family:var(--font-display);font-weight:800;font-size:26px;color:var(--text-primary);margin-bottom:6px;">
+        Welcome back</div>
+      <div style="font-size:13px;color:var(--text-muted);margin-bottom:28px;">Sign in to your NexaERP workspace</div>
+
+      <!-- Demo credentials notice -->
+      <div
+        style="background:var(--accent-light);border:1px solid rgba(245,166,35,0.3);border-radius:10px;padding:12px 14px;margin-bottom:24px;font-size:12.5px;color:var(--text-primary);">
+        <i class="bi bi-info-circle" style="color:var(--accent);"></i>
+        <strong> Demo credentials:</strong> admin@nexaerp.com / admin123
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label class="form-label">Email Address</label>
+        <div class="login-input-wrap">
+          <i class="bi bi-envelope login-input-icon"></i>
+          <input type="email" class="login-input" id="loginEmail" placeholder="you@company.com"
+            value="admin@nexaerp.com" autocomplete="email">
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-1">
+        <label class="form-label">Password</label>
+        <div class="login-input-wrap">
+          <i class="bi bi-lock login-input-icon"></i>
+          <input type="password" class="login-input" id="loginPass" placeholder="••••••••" value="admin123"
+            autocomplete="current-password">
+          <button type="button" class="toggle-password" onclick="togglePass()" id="eyeBtn">
+            <i class="bi bi-eye" id="eyeIcon"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mb-4 mt-2">
+        <div class="form-check mb-0">
+          <input class="form-check-input" type="checkbox" id="rememberMe" checked>
+          <label class="form-check-label" for="rememberMe" style="font-size:13px;">Remember me</label>
+        </div>
+        <a href="#" style="font-size:13px;color:var(--accent);font-weight:500;"
+          onclick="Utils.showToast('Password reset email sent!','info');return false;">Forgot password?</a>
+      </div>
+
+      <!-- Login button -->
+      <button class="btn-login" id="loginBtn" onclick="doLogin()">
+        <i class="bi bi-box-arrow-in-right" id="loginBtnIcon"></i>
+        <span id="loginBtnText">Sign In</span>
+      </button>
+
+      <div class="divider">or continue with</div>
+
+      <div class="d-flex gap-2 mb-4">
+        <button class="sso-btn" onclick="Utils.showToast('Google SSO — configure in Settings > Integrations','info')">
+          <i class="bi bi-google" style="color:#4285F4;font-size:15px;"></i> Google
+        </button>
+        <button class="sso-btn"
+          onclick="Utils.showToast('Microsoft SSO — configure in Settings > Integrations','info')">
+          <i class="bi bi-microsoft" style="color:#0078D4;font-size:15px;"></i> Microsoft
+        </button>
+        <button class="sso-btn" onclick="Utils.showToast('SAML SSO — configure in Settings > Integrations','info')">
+          <i class="bi bi-shield-check" style="color:#22C55E;font-size:15px;"></i> SAML
+        </button>
+      </div>
+
+      <div style="text-align:center;font-size:12px;color:var(--text-muted);">
+        Don't have an account? <a href="#" style="color:var(--accent);font-weight:600;"
+          onclick="Utils.showToast('Contact your administrator to create an account','info');return false;">Contact
+          Admin</a>
+      </div>
+
+      <!-- Footer -->
+      <div style="margin-top:40px;text-align:center;font-size:11px;color:var(--text-muted);">
+        © 2026 NexaERP Corp. &nbsp;·&nbsp;
+        <a href="#" style="color:var(--text-muted);">Privacy</a> &nbsp;·&nbsp;
+        <a href="#" style="color:var(--text-muted);">Terms</a> &nbsp;·&nbsp;
+        <a href="#" style="color:var(--text-muted);">Security</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    function togglePass() {
+      const input = document.getElementById('loginPass');
+      const icon = document.getElementById('eyeIcon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'bi bi-eye-slash';
+      } else {
+        input.type = 'password';
+        icon.className = 'bi bi-eye';
+      }
+    }
+
+    function doLogin() {
+      const email = document.getElementById('loginEmail').value.trim();
+      const pass = document.getElementById('loginPass').value;
+      const btn = document.getElementById('loginBtn');
+      const icon = document.getElementById('loginBtnIcon');
+      const text = document.getElementById('loginBtnText');
+
+      if (!email || !pass) {
+        Utils.showToast('Please enter your email and password', 'warning');
+        return;
+      }
+
+      // Loading state
+      btn.disabled = true;
+      icon.className = 'bi bi-hourglass-split';
+      text.textContent = 'Signing in...';
+
+      setTimeout(() => {
+        if (email === 'admin@nexaerp.com' && pass === 'admin123') {
+          icon.className = 'bi bi-check-lg';
+          text.textContent = 'Success!';
+          btn.style.background = '#22C55E';
+          Utils.showToast('Login successful! Redirecting...', 'success');
+          setTimeout(() => { window.location.href = 'index.html'; }, 800);
+        } else {
+          btn.disabled = false;
+          icon.className = 'bi bi-box-arrow-in-right';
+          text.textContent = 'Sign In';
+          btn.style.background = '';
+          Utils.showToast('Invalid credentials. Try admin@nexaerp.com / admin123', 'danger');
+        }
+      }, 1200);
+    }
+
+    // Enter key support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') doLogin();
+    });
+  </script>
+</body>
+
+</html>

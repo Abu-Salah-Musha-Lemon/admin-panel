@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory — ASML-ERP</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div id="toastWrap" class="position-fixed bottom-0 end-0 p-3" style="z-index:9999;"></div>
+  <div class="erp-wrapper">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">N</div><span class="logo-text">ASML -  ERP</span>
+      </div>
+      <nav class="sidebar-nav">
+        <ul style="list-style:none;padding:0;margin:0;">
+          <li class="nav-section-label">Main</li>
+          <li class="nav-item"><a href="index.html" class="nav-link" data-tooltip="Dashboard"><i
+                class="bi bi-grid-1x2-fill nav-icon"></i><span class="nav-label">Dashboard</span></a></li>
+          <li class="nav-section-label">Operations</li>
+          <li class="nav-item"><a href="sales.html" class="nav-link" data-tooltip="Sales"><i
+                class="bi bi-graph-up-arrow nav-icon"></i><span class="nav-label">Sales</span></a></li>
+          <li class="nav-item"><a href="purchase.html" class="nav-link" data-tooltip="Purchase"><i
+                class="bi bi-bag-fill nav-icon"></i><span class="nav-label">Purchase</span></a></li>
+          <li class="nav-item"><a href="inventory.html" class="nav-link" data-tooltip="Inventory"><i
+                class="bi bi-boxes nav-icon"></i><span class="nav-label">Inventory</span></a></li>
+          <li class="nav-item"><a href="warehouse.html" class="nav-link" data-tooltip="Warehouse"><i
+                class="bi bi-building nav-icon"></i><span class="nav-label">Warehouse</span></a></li>
+          <li class="nav-item"><a href="ecommerce.html" class="nav-link" data-tooltip="E-Commerce"><i
+                class="bi bi-cart4 nav-icon"></i><span class="nav-label">E-Commerce</span></a></li>
+          <li class="nav-section-label">People &amp; Finance</li>
+          <li class="nav-item"><a href="hrms.html" class="nav-link" data-tooltip="HRMS"><i
+                class="bi bi-people-fill nav-icon"></i><span class="nav-label">HRMS</span></a></li>
+          <li class="nav-item"><a href="crm.html" class="nav-link" data-tooltip="CRM"><i
+                class="bi bi-person-lines-fill nav-icon"></i><span class="nav-label">CRM</span></a></li>
+          <li class="nav-item"><a href="finance.html" class="nav-link" data-tooltip="Finance"><i
+                class="bi bi-wallet2 nav-icon"></i><span class="nav-label">Finance</span></a></li>
+          <li class="nav-section-label">Intelligence</li>
+          <li class="nav-item"><a href="reports.html" class="nav-link" data-tooltip="Reports"><i
+                class="bi bi-bar-chart-fill nav-icon"></i><span class="nav-label">Reports</span></a></li>
+          <li class="nav-section-label">System</li>
+          <li class="nav-item"><a href="settings.html" class="nav-link" data-tooltip="Settings"><i
+                class="bi bi-gear-fill nav-icon"></i><span class="nav-label">Settings</span></a></li>
+          <li class="nav-item"><a href="#" class="nav-link" data-tooltip="Logout"><i
+                class="bi bi-box-arrow-left nav-icon"></i><span class="nav-label">Logout</span></a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="user-avatar">AD</div>
+          <div class="user-info">
+            <div class="user-name">Admin User</div>
+            <div class="user-role">Super Admin</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="topbar">
+        <button class="topbar-toggle" id="sidebarToggle"><i class="bi bi-list" style="font-size:18px;"></i></button>
+        <div class="topbar-breadcrumb"><span class="breadcrumb-trail text-muted-erp">Operations</span><i
+            class="bi bi-chevron-right text-muted-erp" style="font-size:10px;"></i><span
+            class="current-page">Inventory</span></div>
+        <div class="topbar-actions">
+          <div class="dropdown"><button class="topbar-btn" data-bs-toggle="dropdown"><i class="bi bi-bell"
+                style="font-size:14px;"></i><span class="notif-badge"></span></button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">2 low stock alerts</a></li>
+            </ul>
+          </div>
+          <div class="dropdown"><button class="topbar-profile" data-bs-toggle="dropdown">
+              <div class="profile-avatar">AD</div><span class="profile-name">Admin</span><i class="bi bi-chevron-down"
+                style="font-size:10px;color:var(--text-muted);"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="settings.html"><i class="bi bi-person"></i> Profile</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Inventory Management</h1>
+            <p class="page-subtitle">Products, stock levels, and supplier tracking.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn-erp btn-outline btn-sm"><i class="bi bi-arrow-down-up"></i> Stock Adjustment</button>
+            <button class="btn-erp btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal"><i
+                class="bi bi-plus-lg"></i> Add Product</button>
+          </div>
+        </div>
+
+        <!-- KPIs -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#3B82F6;">
+              <div class="kpi-icon" style="background:#DBEAFE;color:#2563EB;"><i class="bi bi-box-seam"></i></div>
+              <div class="kpi-info">
+                <div class="kpi-value">1,284</div>
+                <div class="kpi-label">Total SKUs</div>
+                <div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> 12 added</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#22C55E;">
+              <div class="kpi-icon" style="background:#DCFCE7;color:#16A34A;"><i class="bi bi-check2-all"></i></div>
+              <div class="kpi-info">
+                <div class="kpi-value">9,214</div>
+                <div class="kpi-label">Units In Stock</div>
+                <div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> Healthy</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#EF4444;">
+              <div class="kpi-icon" style="background:#FEE2E2;color:#DC2626;"><i class="bi bi-exclamation-triangle"></i>
+              </div>
+              <div class="kpi-info">
+                <div class="kpi-value">23</div>
+                <div class="kpi-label">Low Stock</div>
+                <div class="kpi-change down"><i class="bi bi-arrow-down-right"></i> Reorder needed</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#F59E0B;">
+              <div class="kpi-icon" style="background:#FEF3C7;color:#D97706;"><i class="bi bi-currency-dollar"></i>
+              </div>
+              <div class="kpi-info">
+                <div class="kpi-value">$842K</div>
+                <div class="kpi-label">Inventory Value</div>
+                <div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> 4.8%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stock Alert Banner -->
+        <div class="card mb-4" style="background:linear-gradient(135deg,#FEF3C7,#FDE68A);border-color:#FCD34D;">
+          <div class="card-body d-flex align-items-center gap-3 py-3">
+            <i class="bi bi-exclamation-triangle-fill" style="color:#D97706;font-size:22px;"></i>
+            <div><strong style="color:#92400E;">Stock Alert:</strong> <span style="color:#78350F;">23 products are below
+                minimum reorder levels. 5 products are completely out of stock.</span></div>
+            <button class="btn-erp btn-sm ms-auto" style="background:#D97706;color:#fff;border:none;"
+              onclick="Utils.showToast('Reorder requests sent to procurement!','success')">Auto Reorder</button>
+          </div>
+        </div>
+
+        <!-- Products Table -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h3 class="card-title">Product Catalog</h3>
+            <div class="d-flex gap-2 flex-wrap">
+              <div class="search-box"><i class="bi bi-search search-icon"></i><input type="text"
+                  class="form-control form-control-sm" placeholder="Search products, SKU..."
+                  onkeyup="filterProducts(this.value)"></div>
+              <select class="form-select form-select-sm" style="width:auto;">
+                <option>All Categories</option>
+                <option>Electronics</option>
+                <option>Clothing</option>
+                <option>Home & Garden</option>
+                <option>Sports</option>
+              </select>
+              <select class="form-select form-select-sm" style="width:auto;">
+                <option>All Stock</option>
+                <option>In Stock</option>
+                <option>Low Stock</option>
+                <option>Out of Stock</option>
+              </select>
+              <button class="btn-erp btn-outline btn-sm"><i class="bi bi-download"></i> Export</button>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table class="erp-table" id="productTable">
+              <thead>
+                <tr>
+                  <th><input type="checkbox"></th>
+                  <th>Product</th>
+                  <th>SKU</th>
+                  <th>Category</th>
+                  <th>Supplier</th>
+                  <th>Cost</th>
+                  <th>Price</th>
+                  <th>In Stock</th>
+                  <th>Reserved</th>
+                  <th>Reorder At</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productTbody"></tbody>
+            </table>
+          </div>
+          <div class="d-flex align-items-center justify-content-between px-4 py-3"
+            style="border-top:1px solid var(--border);font-size:12px;color:var(--text-muted);">
+            <span>Showing 1–10 of 1,284 products</span>
+            <div class="d-flex gap-1">
+              <button class="btn-erp btn-outline btn-sm">← Prev</button>
+              <button class="btn-erp btn-primary btn-sm">1</button>
+              <button class="btn-erp btn-outline btn-sm">2</button>
+              <button class="btn-erp btn-outline btn-sm">3</button>
+              <button class="btn-erp btn-outline btn-sm">Next →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts + Suppliers -->
+        <div class="row g-3">
+          <div class="col-xl-4">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Stock by Category</h3>
+              </div>
+              <div class="card-body">
+                <div class="chart-container" style="height:220px;"><canvas id="stockCatChart"></canvas></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-8">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Supplier List</h3><button class="btn-erp btn-primary btn-sm"
+                  data-bs-toggle="modal" data-bs-target="#addSupplierModal"><i class="bi bi-plus"></i> Add
+                  Supplier</button>
+              </div>
+              <div class="table-wrapper">
+                <table class="erp-table">
+                  <thead>
+                    <tr>
+                      <th>Supplier</th>
+                      <th>Contact</th>
+                      <th>Products</th>
+                      <th>Lead Time</th>
+                      <th>Rating</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>TechSupply Co.</strong>
+                        <div style="font-size:11px;color:var(--text-muted);">techsupply.com</div>
+                      </td>
+                      <td>info@techsupply.com</td>
+                      <td>284</td>
+                      <td>5 days</td>
+                      <td><span style="color:var(--accent);">★★★★★</span></td>
+                      <td><span class="badge-status badge-success">Active</span></td>
+                      <td>
+                        <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-pencil"></i></button></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Global Parts Inc.</strong>
+                        <div style="font-size:11px;color:var(--text-muted);">globalparts.com</div>
+                      </td>
+                      <td>orders@globalparts.com</td>
+                      <td>196</td>
+                      <td>7 days</td>
+                      <td><span style="color:var(--accent);">★★★★</span></td>
+                      <td><span class="badge-status badge-success">Active</span></td>
+                      <td>
+                        <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-pencil"></i></button></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Allied Supplies Ltd.</strong>
+                        <div style="font-size:11px;color:var(--text-muted);">allied.com</div>
+                      </td>
+                      <td>supply@allied.com</td>
+                      <td>142</td>
+                      <td>10 days</td>
+                      <td><span style="color:var(--accent);">★★★★</span></td>
+                      <td><span class="badge-status badge-success">Active</span></td>
+                      <td>
+                        <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-pencil"></i></button></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Horizon Goods</strong>
+                        <div style="font-size:11px;color:var(--text-muted);">horizongoods.io</div>
+                      </td>
+                      <td>buy@horizongoods.io</td>
+                      <td>88</td>
+                      <td>14 days</td>
+                      <td><span style="color:var(--accent);">★★★</span></td>
+                      <td><span class="badge-status badge-warning">Review</span></td>
+                      <td>
+                        <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-pencil"></i></button></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="page-footer"><span>© 2026 ASML -  ERP</span><span>Inventory Module v3.2</span></footer>
+    </div>
+  </div>
+
+  <!-- Add Product Modal -->
+  <div class="modal fade" id="addProductModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Product</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-8"><label class="form-label">Product Name</label><input class="form-control"
+                placeholder="Product name"></div>
+            <div class="col-md-4"><label class="form-label">SKU</label><input class="form-control"
+                placeholder="SKU-XXXX"></div>
+            <div class="col-md-6"><label class="form-label">Category</label><select class="form-select">
+                <option>Electronics</option>
+                <option>Clothing</option>
+                <option>Home & Garden</option>
+                <option>Sports</option>
+              </select></div>
+            <div class="col-md-6"><label class="form-label">Supplier</label><select class="form-select">
+                <option>TechSupply Co.</option>
+                <option>Global Parts Inc.</option>
+              </select></div>
+            <div class="col-md-4"><label class="form-label">Cost Price</label><input type="number" class="form-control"
+                placeholder="0.00"></div>
+            <div class="col-md-4"><label class="form-label">Selling Price</label><input type="number"
+                class="form-control" placeholder="0.00"></div>
+            <div class="col-md-4"><label class="form-label">Opening Stock</label><input type="number"
+                class="form-control" placeholder="0"></div>
+            <div class="col-md-6"><label class="form-label">Minimum Stock (Reorder)</label><input type="number"
+                class="form-control" placeholder="10"></div>
+            <div class="col-md-6"><label class="form-label">Warehouse</label><select class="form-select">
+                <option>WH-01 Main</option>
+                <option>WH-02 East</option>
+                <option>WH-03 West</option>
+              </select></div>
+            <div class="col-12"><label class="form-label">Description</label><textarea class="form-control"
+                rows="2"></textarea></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-erp btn-outline" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn-erp btn-primary"
+            onclick="Utils.showToast('Product added to inventory!');bootstrap.Modal.getInstance(document.getElementById('addProductModal')).hide();">Save
+            Product</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Supplier Modal -->
+  <div class="modal fade" id="addSupplierModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Supplier</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-12"><label class="form-label">Company Name</label><input class="form-control"></div>
+            <div class="col-md-6"><label class="form-label">Contact Email</label><input type="email"
+                class="form-control"></div>
+            <div class="col-md-6"><label class="form-label">Phone</label><input class="form-control"></div>
+            <div class="col-12"><label class="form-label">Address</label><textarea class="form-control"
+                rows="2"></textarea></div>
+            <div class="col-md-6"><label class="form-label">Lead Time (days)</label><input type="number"
+                class="form-control" value="7"></div>
+            <div class="col-md-6"><label class="form-label">Payment Terms</label><select class="form-select">
+                <option>Net 30</option>
+                <option>Net 15</option>
+                <option>Immediate</option>
+              </select></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-erp btn-outline" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn-erp btn-primary"
+            onclick="Utils.showToast('Supplier added!');bootstrap.Modal.getInstance(document.getElementById('addSupplierModal')).hide();">Add
+            Supplier</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/global.js"></script>
+  <script>
+    const products = [
+      { name: 'Laptop Pro X1', sku: 'SKU-0101', cat: 'Electronics', supplier: 'TechSupply Co.', cost: '$820', price: '$1,299', stock: 142, res: 18, reorder: 20, sc: 'success', st: 'In Stock' },
+      { name: 'Wireless Headset Z3', sku: 'SKU-0102', cat: 'Electronics', supplier: 'TechSupply Co.', cost: '$48', price: '$129', stock: 380, res: 45, reorder: 50, sc: 'success', st: 'In Stock' },
+      { name: 'Smart Watch Ultra', sku: 'SKU-0201', cat: 'Electronics', supplier: 'Global Parts Inc.', cost: '$180', price: '$349', stock: 8, res: 2, reorder: 15, sc: 'danger', st: 'Low Stock' },
+      { name: 'Running Shoes M9', sku: 'SKU-0301', cat: 'Sports', supplier: 'Allied Supplies Ltd.', cost: '$42', price: '$99', stock: 220, res: 30, reorder: 40, sc: 'success', st: 'In Stock' },
+      { name: 'USB-C Docking Hub', sku: 'SKU-0103', cat: 'Electronics', supplier: 'TechSupply Co.', cost: '$28', price: '$79', stock: 0, res: 0, reorder: 25, sc: 'danger', st: 'Out of Stock' },
+      { name: 'Yoga Mat Pro', sku: 'SKU-0302', cat: 'Sports', supplier: 'Allied Supplies Ltd.', cost: '$14', price: '$39', stock: 160, res: 10, reorder: 30, sc: 'success', st: 'In Stock' },
+      { name: 'Coffee Maker 3000', sku: 'SKU-0401', cat: 'Home & Garden', supplier: 'Horizon Goods', cost: '$55', price: '$149', stock: 12, res: 3, reorder: 15, sc: 'warning', st: 'Low Stock' },
+      { name: 'Mechanical Keyboard K7', sku: 'SKU-0104', cat: 'Electronics', supplier: 'TechSupply Co.', cost: '$60', price: '$159', stock: 74, res: 8, reorder: 20, sc: 'success', st: 'In Stock' },
+      { name: 'Office Chair Ergo', sku: 'SKU-0402', cat: 'Home & Garden', supplier: 'Global Parts Inc.', cost: '$120', price: '$329', stock: 28, res: 5, reorder: 10, sc: 'success', st: 'In Stock' },
+      { name: 'Bluetooth Speaker S5', sku: 'SKU-0105', cat: 'Electronics', supplier: 'TechSupply Co.', cost: '$32', price: '$89', stock: 5, res: 0, reorder: 20, sc: 'danger', st: 'Low Stock' },
+    ];
+    const scMap = { success: 'badge-success', warning: 'badge-warning', danger: 'badge-danger' };
+    function renderProducts(data) {
+      document.getElementById('productTbody').innerHTML = data.map(p => `
+    <tr>
+      <td><input type="checkbox"></td>
+      <td><strong>${p.name}</strong></td>
+      <td style="font-size:11px;color:var(--text-muted);font-family:monospace;">${p.sku}</td>
+      <td>${p.cat}</td>
+      <td>${p.supplier}</td>
+      <td>${p.cost}</td>
+      <td style="font-weight:600;">${p.price}</td>
+      <td style="font-weight:600;${p.stock === 0 ? 'color:var(--danger)' : p.stock <= p.reorder ? 'color:var(--warning)' : 'color:var(--success)'}">${p.stock}</td>
+      <td>${p.res}</td>
+      <td>${p.reorder}</td>
+      <td><span class="badge-status badge-${p.sc}">${p.st}</span></td>
+      <td><div class="action-btns">
+        <button class="btn-erp btn-ghost btn-sm" title="View"><i class="bi bi-eye"></i></button>
+        <button class="btn-erp btn-ghost btn-sm" title="Edit"><i class="bi bi-pencil"></i></button>
+        <button class="btn-erp btn-danger-ghost btn-sm" title="Delete" onclick="Utils.showToast('Product deleted','danger')"><i class="bi bi-trash"></i></button>
+      </div></td>
+    </tr>`).join('');
+    }
+    function filterProducts(q) {
+      renderProducts(q ? products.filter(p => p.name.toLowerCase().includes(q.toLowerCase()) || p.sku.toLowerCase().includes(q.toLowerCase())) : products);
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProducts(products);
+      ChartHelper.doughnutChart(document.getElementById('stockCatChart').getContext('2d'),
+        ['Electronics', 'Sports', 'Home & Garden', 'Clothing', 'Other'],
+        [42, 24, 16, 12, 6],
+        ['#F5A623', '#3B82F6', '#22C55E', '#8B5CF6', '#EF4444']
+      );
+    });
+  </script>
+</body>
+
+</html>

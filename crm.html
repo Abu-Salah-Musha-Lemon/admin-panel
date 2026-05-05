@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRM — ASML-ERP</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div id="toastWrap" class="position-fixed bottom-0 end-0 p-3" style="z-index:9999;"></div>
+  <div class="erp-wrapper">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">A</div><span class="logo-text">ASML-ERP</span>
+      </div>
+      <nav class="sidebar-nav">
+        <ul style="list-style:none;padding:0;margin:0;">
+          <li class="nav-section-label">Main</li>
+          <li class="nav-item"><a href="index.html" class="nav-link" data-tooltip="Dashboard"><i
+                class="bi bi-grid-1x2-fill nav-icon"></i><span class="nav-label">Dashboard</span></a></li>
+          <li class="nav-section-label">Operations</li>
+          <li class="nav-item"><a href="sales.html" class="nav-link" data-tooltip="Sales"><i
+                class="bi bi-graph-up-arrow nav-icon"></i><span class="nav-label">Sales</span></a></li>
+          <li class="nav-item"><a href="purchase.html" class="nav-link" data-tooltip="Purchase"><i
+                class="bi bi-bag-fill nav-icon"></i><span class="nav-label">Purchase</span></a></li>
+          <li class="nav-item"><a href="inventory.html" class="nav-link" data-tooltip="Inventory"><i
+                class="bi bi-boxes nav-icon"></i><span class="nav-label">Inventory</span></a></li>
+          <li class="nav-item"><a href="warehouse.html" class="nav-link" data-tooltip="Warehouse"><i
+                class="bi bi-building nav-icon"></i><span class="nav-label">Warehouse</span></a></li>
+          <li class="nav-item"><a href="ecommerce.html" class="nav-link" data-tooltip="E-Commerce"><i
+                class="bi bi-cart4 nav-icon"></i><span class="nav-label">E-Commerce</span></a></li>
+          <li class="nav-section-label">People &amp; Finance</li>
+          <li class="nav-item"><a href="hrms.html" class="nav-link" data-tooltip="HRMS"><i
+                class="bi bi-people-fill nav-icon"></i><span class="nav-label">HRMS</span></a></li>
+          <li class="nav-item"><a href="crm.html" class="nav-link" data-tooltip="CRM"><i
+                class="bi bi-person-lines-fill nav-icon"></i><span class="nav-label">CRM</span></a></li>
+          <li class="nav-item"><a href="finance.html" class="nav-link" data-tooltip="Finance"><i
+                class="bi bi-wallet2 nav-icon"></i><span class="nav-label">Finance</span></a></li>
+          <li class="nav-section-label">Intelligence</li>
+          <li class="nav-item"><a href="reports.html" class="nav-link" data-tooltip="Reports"><i
+                class="bi bi-bar-chart-fill nav-icon"></i><span class="nav-label">Reports</span></a></li>
+          <li class="nav-section-label">System</li>
+          <li class="nav-item"><a href="settings.html" class="nav-link" data-tooltip="Settings"><i
+                class="bi bi-gear-fill nav-icon"></i><span class="nav-label">Settings</span></a></li>
+          <li class="nav-item"><a href="#" class="nav-link" data-tooltip="Logout"><i
+                class="bi bi-box-arrow-left nav-icon"></i><span class="nav-label">Logout</span></a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="user-avatar">AD</div>
+          <div class="user-info">
+            <div class="user-name">Admin User</div>
+            <div class="user-role">Super Admin</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="topbar">
+        <button class="topbar-toggle" id="sidebarToggle"><i class="bi bi-list" style="font-size:18px;"></i></button>
+        <div class="topbar-breadcrumb"><span class="breadcrumb-trail text-muted-erp">People & Finance</span><i
+            class="bi bi-chevron-right text-muted-erp" style="font-size:10px;"></i><span class="current-page">CRM</span>
+        </div>
+        <div class="topbar-actions">
+          <div class="dropdown"><button class="topbar-btn" data-bs-toggle="dropdown"><i class="bi bi-bell"
+                style="font-size:14px;"></i><span class="notif-badge"></span></button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">No new notifications</a></li>
+            </ul>
+          </div>
+          <div class="dropdown"><button class="topbar-profile" data-bs-toggle="dropdown">
+              <div class="profile-avatar">AD</div><span class="profile-name">Admin</span><i class="bi bi-chevron-down"
+                style="font-size:10px;color:var(--text-muted);"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="settings.html"><i class="bi bi-person"></i> Profile</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">CRM — Customer Relations</h1>
+            <p class="page-subtitle">Leads, deals pipeline, and contact management.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn-erp btn-outline btn-sm" data-bs-toggle="modal" data-bs-target="#addContactModal"><i
+                class="bi bi-person-plus"></i> Add Contact</button>
+            <button class="btn-erp btn-primary" data-bs-toggle="modal" data-bs-target="#addLeadModal"><i
+                class="bi bi-plus-lg"></i> Add Lead</button>
+          </div>
+        </div>
+
+        <!-- KPIs -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#F5A623;">
+              <div class="kpi-icon" style="background:var(--accent-light);color:var(--accent);"><i
+                  class="bi bi-funnel"></i></div>
+              <div class="kpi-info">
+                <div class="kpi-value">128</div>
+                <div class="kpi-label">Active Leads</div>
+                <div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> 22 new</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#22C55E;">
+              <div class="kpi-icon" style="background:#DCFCE7;color:#16A34A;"><i class="bi bi-trophy"></i></div>
+              <div class="kpi-info">
+                <div class="kpi-value">34</div>
+                <div class="kpi-label">Won Deals</div>
+                <div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> $1.2M value</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#3B82F6;">
+              <div class="kpi-icon" style="background:#DBEAFE;color:#2563EB;"><i class="bi bi-people"></i></div>
+              <div class="kpi-info">
+                <div class="kpi-value">842</div>
+                <div class="kpi-label">Total Contacts</div>
+                <div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> 18 new</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#8B5CF6;">
+              <div class="kpi-icon" style="background:#EDE9FE;color:#7C3AED;"><i class="bi bi-percent"></i></div>
+              <div class="kpi-info">
+                <div class="kpi-value">26.6%</div>
+                <div class="kpi-label">Conversion Rate</div>
+                <div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> 3.2% up</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deals Pipeline -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h3 class="card-title">Deals Pipeline</h3><span style="font-size:12px;color:var(--text-muted);">Drag cards
+              to update stage</span>
+          </div>
+          <div class="card-body">
+            <div class="d-flex gap-3 overflow-auto pb-2">
+              <!-- New -->
+              <div class="pipeline-col">
+                <div class="pipeline-col-header"><span class="pipeline-col-title">New</span><span
+                    class="pipeline-count">4</span></div>
+                <div class="deal-card">
+                  <div class="deal-title">Apex Solutions Ltd.</div>
+                  <div class="deal-value">$45,000</div>
+                  <div class="deal-company">Contact: James Reid</div>
+                  <div class="d-flex justify-content-between mt-2"><span
+                      style="font-size:11px;color:var(--text-muted);">Close: Jun 15</span><span
+                      class="badge-status badge-info" style="font-size:10px;">High</span></div>
+                </div>
+                <div class="deal-card">
+                  <div class="deal-title">NextGen Retail</div>
+                  <div class="deal-value">$28,500</div>
+                  <div class="deal-company">Contact: Amy Chen</div>
+                  <div class="d-flex justify-content-between mt-2"><span
+                      style="font-size:11px;color:var(--text-muted);">Close: Jun 20</span><span
+                      class="badge-status badge-warning" style="font-size:10px;">Med</span></div>
+                </div>
+                <div class="deal-card">
+                  <div class="deal-title">BluePeak Corp</div>
+                  <div class="deal-value">$12,000</div>
+                  <div class="deal-company">Contact: Sarah T.</div>
+                  <div class="d-flex justify-content-between mt-2"><span
+                      style="font-size:11px;color:var(--text-muted);">Close: Jul 1</span><span
+                      class="badge-status badge-neutral" style="font-size:10px;">Low</span></div>
+                </div>
+              </div>
+              <!-- Qualified -->
+              <div class="pipeline-col">
+                <div class="pipeline-col-header"><span class="pipeline-col-title">Qualified</span><span
+                    class="pipeline-count">5</span></div>
+                <div class="deal-card">
+                  <div class="deal-title">Skyline Group</div>
+                  <div class="deal-value">$89,000</div>
+                  <div class="deal-company">Contact: Mark Joiner</div>
+                  <div class="d-flex justify-content-between mt-2"><span
+                      style="font-size:11px;color:var(--text-muted);">Close: May 30</span><span
+                      class="badge-status badge-danger" style="font-size:10px;">Urgent</span></div>
+                </div>
+                <div class="deal-card">
+                  <div class="deal-title">Meridian Finance</div>
+                  <div class="deal-value">$54,000</div>
+                  <div class="deal-company">Contact: Lisa Park</div>
+                  <div class="d-flex justify-content-between mt-2"><span
+                      style="font-size:11px;color:var(--text-muted);">Close: Jun 10</span><span
+                      class="badge-status badge-info" style="font-size:10px;">High</span></div>
+                </div>
+                <div class="deal-card">
+                  <div class="deal-title">Titan Logistics</div>
+                  <div class="deal-value">$36,000</div>
+                  <div class="deal-company">Contact: Ben Walsh</div>
+                  <div class="d-flex justify-content-between mt-2"><span
+                      style="font-size:11px;color:var(--text-muted);">Close: Jun 25</span><span
+                      class="badge-status badge-warning" style="font-size:10px;">Med</span></div>
+                </div>
+              </div>
+              <!-- Proposal -->
+              <div class="pipeline-col">
+                <div class="pipeline-col-header"><span class="pipeline-col-title">Proposal</span><span
+                    class="pipeline-count">3</span></div>
+                <div class="deal-card">
+                  <div class="deal-title">Aurora Tech</div>
+                  <div class="deal-value">$120,000</div>
+                  <div class="deal-company">Contact: Diana Fox</div>
+                  <div class="d-flex justify-content-between mt-2"><span
+                      style="font-size:11px;color:var(--text-muted);">Close: May 25</span><span
+                      class="badge-status badge-danger" style="font-size:10px;">Urgent</span></div>
+                </div>
+                <div class="deal-card">
+                  <div class="deal-title">Summit Brands</div>
+                  <div class="deal-value">$67,000</div>
+                  <div class="deal-company">Contact: Chris Brown</div>
+                  <div class="d-flex justify-content-between mt-2"><span
+                      style="font-size:11px;color:var(--text-muted);">Close: Jun 5</span><span
+                      class="badge-status badge-info" style="font-size:10px;">High</span></div>
+                </div>
+              </div>
+              <!-- Negotiation -->
+              <div class="pipeline-col">
+                <div class="pipeline-col-header"><span class="pipeline-col-title">Negotiation</span><span
+                    class="pipeline-count">2</span></div>
+                <div class="deal-card" style="border-left:3px solid var(--accent);">
+                  <div class="deal-title">GlobalNet Inc.</div>
+                  <div class="deal-value">$210,000</div>
+                  <div class="deal-company">Contact: Paul Grant</div>
+                  <div class="d-flex justify-content-between mt-2"><span
+                      style="font-size:11px;color:var(--text-muted);">Close: May 20</span><span
+                      class="badge-status badge-danger" style="font-size:10px;">Urgent</span></div>
+                </div>
+                <div class="deal-card">
+                  <div class="deal-title">IronClad Systems</div>
+                  <div class="deal-value">$88,000</div>
+                  <div class="deal-company">Contact: Rebecca Lane</div>
+                  <div class="d-flex justify-content-between mt-2"><span
+                      style="font-size:11px;color:var(--text-muted);">Close: May 28</span><span
+                      class="badge-status badge-info" style="font-size:10px;">High</span></div>
+                </div>
+              </div>
+              <!-- Won -->
+              <div class="pipeline-col" style="background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);">
+                <div class="pipeline-col-header"><span class="pipeline-col-title"
+                    style="color:var(--success);">Won</span><span class="pipeline-count"
+                    style="background:var(--success);">3</span></div>
+                <div class="deal-card" style="border-left:3px solid var(--success);">
+                  <div class="deal-title">Cascade Partners</div>
+                  <div class="deal-value" style="color:var(--success);">$155,000</div>
+                  <div class="deal-company">Closed May 1</div>
+                </div>
+                <div class="deal-card" style="border-left:3px solid var(--success);">
+                  <div class="deal-title">Velocity Media</div>
+                  <div class="deal-value" style="color:var(--success);">$42,000</div>
+                  <div class="deal-company">Closed Apr 28</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leads & Contacts -->
+        <div class="row g-3">
+          <div class="col-xl-6">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Recent Leads</h3><a href="#" style="font-size:12px;color:var(--accent);">View
+                  all</a>
+              </div>
+              <div class="table-wrapper">
+                <table class="erp-table">
+                  <thead>
+                    <tr>
+                      <th>Lead</th>
+                      <th>Company</th>
+                      <th>Source</th>
+                      <th>Score</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>James Reid</strong>
+                        <div style="font-size:11px;color:var(--text-muted);">james@apex.com</div>
+                      </td>
+                      <td>Apex Solutions</td>
+                      <td>Website</td>
+                      <td><span style="color:var(--success);font-weight:700;">92</span></td>
+                      <td><span class="badge-status badge-info">Qualified</span></td>
+                      <td>
+                        <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-pencil"></i></button></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Amy Chen</strong>
+                        <div style="font-size:11px;color:var(--text-muted);">amy@nextgen.com</div>
+                      </td>
+                      <td>NextGen Retail</td>
+                      <td>LinkedIn</td>
+                      <td><span style="color:var(--warning);font-weight:700;">74</span></td>
+                      <td><span class="badge-status badge-warning">New</span></td>
+                      <td>
+                        <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-pencil"></i></button></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Paul Grant</strong>
+                        <div style="font-size:11px;color:var(--text-muted);">paul@globalnet.com</div>
+                      </td>
+                      <td>GlobalNet Inc.</td>
+                      <td>Referral</td>
+                      <td><span style="color:var(--success);font-weight:700;">98</span></td>
+                      <td><span class="badge-status badge-success">Negotiating</span></td>
+                      <td>
+                        <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-pencil"></i></button></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Diana Fox</strong>
+                        <div style="font-size:11px;color:var(--text-muted);">diana@aurora.com</div>
+                      </td>
+                      <td>Aurora Tech</td>
+                      <td>Email Campaign</td>
+                      <td><span style="color:var(--success);font-weight:700;">88</span></td>
+                      <td><span class="badge-status badge-warning">Proposal</span></td>
+                      <td>
+                        <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                              class="bi bi-pencil"></i></button></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Lead Sources</h3>
+              </div>
+              <div class="card-body">
+                <div class="chart-container" style="height:240px;"><canvas id="leadSourceChart"></canvas></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="page-footer"><span>© 2026 ASML - ERP</span><span>CRM Module v3.2</span></footer>
+    </div>
+  </div>
+
+  <!-- Add Lead Modal -->
+  <div class="modal fade" id="addLeadModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Lead</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-12"><label class="form-label">Full Name</label><input class="form-control"
+                placeholder="Contact name"></div>
+            <div class="col-md-6"><label class="form-label">Email</label><input type="email" class="form-control"></div>
+            <div class="col-md-6"><label class="form-label">Phone</label><input class="form-control"></div>
+            <div class="col-12"><label class="form-label">Company</label><input class="form-control"></div>
+            <div class="col-md-6"><label class="form-label">Deal Value</label><input type="number" class="form-control"
+                placeholder="$0.00"></div>
+            <div class="col-md-6"><label class="form-label">Source</label><select class="form-select">
+                <option>Website</option>
+                <option>LinkedIn</option>
+                <option>Referral</option>
+                <option>Email Campaign</option>
+              </select></div>
+            <div class="col-12"><label class="form-label">Notes</label><textarea class="form-control"
+                rows="2"></textarea></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-erp btn-outline" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn-erp btn-primary"
+            onclick="Utils.showToast('Lead added successfully!');bootstrap.Modal.getInstance(document.getElementById('addLeadModal')).hide();">Add
+            Lead</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Contact Modal -->
+  <div class="modal fade" id="addContactModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Contact</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label">First Name</label><input class="form-control"></div>
+            <div class="col-md-6"><label class="form-label">Last Name</label><input class="form-control"></div>
+            <div class="col-12"><label class="form-label">Email</label><input type="email" class="form-control"></div>
+            <div class="col-12"><label class="form-label">Company</label><input class="form-control"></div>
+            <div class="col-12"><label class="form-label">Role</label><input class="form-control"
+                placeholder="Job title"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-erp btn-outline" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn-erp btn-primary"
+            onclick="Utils.showToast('Contact saved!');bootstrap.Modal.getInstance(document.getElementById('addContactModal')).hide();">Save
+            Contact</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/global.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ChartHelper.doughnutChart(document.getElementById('leadSourceChart').getContext('2d'),
+        ['Website', 'LinkedIn', 'Referral', 'Email Campaign', 'Cold Call', 'Events'],
+        [32, 24, 18, 14, 8, 4],
+        ['#F5A623', '#3B82F6', '#22C55E', '#8B5CF6', '#EF4444', '#06B6D4']
+      );
+    });
+  </script>
+</body>
+
+</html>

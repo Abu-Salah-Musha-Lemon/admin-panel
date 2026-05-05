@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — ASML-ERP</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div id="toastWrap" class="position-fixed bottom-0 end-0 p-3" style="z-index:9999;"></div>
+  <div class="erp-wrapper">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">A</div>
+        <span class="logo-text">ASML-ERP</span>
+      </div>
+      <nav class="sidebar-nav">
+        <ul style="list-style:none;padding:0;margin:0;">
+          <li class="nav-section-label">Main</li>
+          <li class="nav-item"><a href="index.html" class="nav-link" data-tooltip="Dashboard"><i
+                class="bi bi-grid-1x2-fill nav-icon"></i><span class="nav-label">Dashboard</span></a></li>
+          <li class="nav-section-label">Operations</li>
+          <li class="nav-item"><a href="sales.html" class="nav-link" data-tooltip="Sales"><i
+                class="bi bi-graph-up-arrow nav-icon"></i><span class="nav-label">Sales</span></a></li>
+          <li class="nav-item"><a href="purchase.html" class="nav-link" data-tooltip="Purchase"><i
+                class="bi bi-bag-fill nav-icon"></i><span class="nav-label">Purchase</span></a></li>
+          <li class="nav-item"><a href="inventory.html" class="nav-link" data-tooltip="Inventory"><i
+                class="bi bi-boxes nav-icon"></i><span class="nav-label">Inventory</span></a></li>
+          <li class="nav-item"><a href="warehouse.html" class="nav-link" data-tooltip="Warehouse"><i
+                class="bi bi-building nav-icon"></i><span class="nav-label">Warehouse</span></a></li>
+          <li class="nav-item"><a href="ecommerce.html" class="nav-link" data-tooltip="E-Commerce"><i
+                class="bi bi-cart4 nav-icon"></i><span class="nav-label">E-Commerce</span></a></li>
+          <li class="nav-section-label">People &amp; Finance</li>
+          <li class="nav-item"><a href="hrms.html" class="nav-link" data-tooltip="HRMS"><i
+                class="bi bi-people-fill nav-icon"></i><span class="nav-label">HRMS</span></a></li>
+          <li class="nav-item"><a href="crm.html" class="nav-link" data-tooltip="CRM"><i
+                class="bi bi-person-lines-fill nav-icon"></i><span class="nav-label">CRM</span></a></li>
+          <li class="nav-item"><a href="finance.html" class="nav-link" data-tooltip="Finance"><i
+                class="bi bi-wallet2 nav-icon"></i><span class="nav-label">Finance</span></a></li>
+          <li class="nav-section-label">Intelligence</li>
+          <li class="nav-item"><a href="reports.html" class="nav-link" data-tooltip="Reports"><i
+                class="bi bi-bar-chart-fill nav-icon"></i><span class="nav-label">Reports</span></a></li>
+          <li class="nav-section-label">System</li>
+          <li class="nav-item"><a href="settings.html" class="nav-link" data-tooltip="Settings"><i
+                class="bi bi-gear-fill nav-icon"></i><span class="nav-label">Settings</span></a></li>
+          <li class="nav-item"><a href="#" class="nav-link" data-tooltip="Logout"><i
+                class="bi bi-box-arrow-left nav-icon"></i><span class="nav-label">Logout</span></a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="user-avatar">AD</div>
+          <div class="user-info">
+            <div class="user-name">Admin User</div>
+            <div class="user-role">Super Admin</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <button class="topbar-toggle" id="sidebarToggle"><i class="bi bi-list" style="font-size:18px;"></i></button>
+        <div class="topbar-breadcrumb"><span class="breadcrumb-trail text-muted-erp">System</span><i
+            class="bi bi-chevron-right text-muted-erp" style="font-size:10px;"></i><span
+            class="current-page">Settings</span></div>
+        <div class="topbar-actions">
+          <div class="dropdown"><button class="topbar-btn" data-bs-toggle="dropdown"><i class="bi bi-bell"
+                style="font-size:14px;"></i><span class="notif-badge"></span></button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">No new notifications</a></li>
+            </ul>
+          </div>
+          <div class="dropdown"><button class="topbar-profile" data-bs-toggle="dropdown">
+              <div class="profile-avatar">AD</div><span class="profile-name">Admin</span><i class="bi bi-chevron-down"
+                style="font-size:10px;color:var(--text-muted);"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="settings.html"><i class="bi bi-person"></i> Profile</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item text-danger" href="login.html"><i class="bi bi-box-arrow-left"></i> Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">System Settings</h1>
+            <p class="page-subtitle">Manage your profile, preferences, and system configuration.</p>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <!-- Settings Nav -->
+          <div class="col-xl-3 col-md-4">
+            <div class="card" style="position:sticky;top:calc(var(--topbar-height) + 28px);">
+              <div class="card-body" style="padding:12px;">
+                <ul class="settings-nav">
+                  <li><a href="#" class="active" onclick="showSetting('profile',this);return false;"><i
+                        class="bi bi-person-circle"></i> My Profile</a></li>
+                  <li><a href="#" onclick="showSetting('security',this);return false;"><i class="bi bi-shield-lock"></i>
+                      Security</a></li>
+                  <li><a href="#" onclick="showSetting('appearance',this);return false;"><i class="bi bi-palette"></i>
+                      Appearance</a></li>
+                  <li><a href="#" onclick="showSetting('notifications',this);return false;"><i class="bi bi-bell"></i>
+                      Notifications</a></li>
+                  <li><a href="#" onclick="showSetting('company',this);return false;"><i class="bi bi-building"></i>
+                      Company</a></li>
+                  <li><a href="#" onclick="showSetting('users',this);return false;"><i class="bi bi-people"></i> Users &
+                      Roles</a></li>
+                  <li><a href="#" onclick="showSetting('integrations',this);return false;"><i class="bi bi-plug"></i>
+                      Integrations</a></li>
+                  <li><a href="#" onclick="showSetting('billing',this);return false;"><i class="bi bi-credit-card"></i>
+                      Billing & Plan</a></li>
+                  <li><a href="#" onclick="showSetting('audit',this);return false;"><i class="bi bi-journal-text"></i>
+                      Audit Log</a></li>
+                  <li><a href="#" onclick="showSetting('backup',this);return false;"><i class="bi bi-cloud-upload"></i>
+                      Backup & Data</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Settings Content -->
+          <div class="col-xl-9 col-md-8">
+
+            <!-- PROFILE -->
+            <div id="setting-profile">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h3 class="card-title">My Profile</h3>
+                </div>
+                <div class="card-body">
+                  <div class="d-flex align-items-center gap-4 mb-4 pb-4" style="border-bottom:1px solid var(--border);">
+                    <div
+                      style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-dark));display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:28px;color:#0D1321;flex-shrink:0;">
+                      AD</div>
+                    <div>
+                      <div style="font-family:var(--font-display);font-weight:700;font-size:18px;">Admin User</div>
+                      <div style="color:var(--text-muted);font-size:13px;">admin@ASML -  ERP.com · Super Admin</div>
+                      <div class="d-flex gap-2 mt-2">
+                        <button class="btn-erp btn-outline btn-sm"
+                          onclick="Utils.showToast('Avatar upload dialog opened','info')"><i class="bi bi-camera"></i>
+                          Change Photo</button>
+                        <button class="btn-erp btn-danger-ghost btn-sm"
+                          onclick="Utils.showToast('Avatar removed','danger')"><i class="bi bi-trash"></i>
+                          Remove</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row g-3">
+                    <div class="col-md-6"><label class="form-label">First Name</label><input class="form-control"
+                        value="Admin"></div>
+                    <div class="col-md-6"><label class="form-label">Last Name</label><input class="form-control"
+                        value="User"></div>
+                    <div class="col-md-6"><label class="form-label">Email Address</label><input type="email"
+                        class="form-control" value="admin@ASML -  ERP.com"></div>
+                    <div class="col-md-6"><label class="form-label">Phone</label><input class="form-control"
+                        value="+1 (212) 555-0100"></div>
+                    <div class="col-md-6"><label class="form-label">Job Title</label><input class="form-control"
+                        value="Super Administrator"></div>
+                    <div class="col-md-6"><label class="form-label">Department</label><select class="form-select">
+                        <option selected>Administration</option>
+                        <option>Engineering</option>
+                        <option>Finance</option>
+                      </select></div>
+                    <div class="col-md-6"><label class="form-label">Timezone</label><select class="form-select">
+                        <option selected>UTC-05:00 (Eastern)</option>
+                        <option>UTC+00:00 (GMT)</option>
+                        <option>UTC+05:30 (IST)</option>
+                      </select></div>
+                    <div class="col-md-6"><label class="form-label">Language</label><select class="form-select">
+                        <option selected>English (US)</option>
+                        <option>Spanish</option>
+                        <option>French</option>
+                        <option>Arabic</option>
+                      </select></div>
+                    <div class="col-12"><label class="form-label">Bio</label><textarea class="form-control" rows="3"
+                        placeholder="Short bio...">System administrator for ASML -  ERP platform. Manages all modules and user access.</textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer"
+                  style="padding:16px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px;">
+                  <button class="btn-erp btn-outline">Discard</button>
+                  <button class="btn-erp btn-primary" onclick="Utils.showToast('Profile updated successfully!')"><i
+                      class="bi bi-check-lg"></i> Save Changes</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECURITY -->
+            <div id="setting-security" style="display:none;">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h3 class="card-title">Change Password</h3>
+                </div>
+                <div class="card-body">
+                  <div class="row g-3">
+                    <div class="col-12"><label class="form-label">Current Password</label><input type="password"
+                        class="form-control" placeholder="••••••••"></div>
+                    <div class="col-md-6"><label class="form-label">New Password</label><input type="password"
+                        class="form-control" id="newPass" placeholder="Min. 8 characters"
+                        oninput="checkStrength(this.value)"></div>
+                    <div class="col-md-6"><label class="form-label">Confirm New Password</label><input type="password"
+                        class="form-control" placeholder="Repeat new password"></div>
+                    <div class="col-12">
+                      <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;">Password strength</div>
+                      <div class="progress-bar-erp">
+                        <div id="strengthBar" class="progress-fill" style="width:0%;transition:width 0.3s;"></div>
+                      </div>
+                      <div id="strengthLabel" style="font-size:11px;margin-top:4px;color:var(--text-muted);"></div>
+                    </div>
+                  </div>
+                  <div class="mt-3 d-flex justify-content-end">
+                    <button class="btn-erp btn-primary"
+                      onclick="Utils.showToast('Password updated successfully!')">Update Password</button>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h3 class="card-title">Two-Factor Authentication</h3>
+                </div>
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div>
+                      <div style="font-weight:600;font-size:13px;">Authenticator App (TOTP)</div>
+                      <div style="font-size:12px;color:var(--text-muted);">Use Google Authenticator or Authy</div>
+                    </div>
+                    <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
+                        onchange="Utils.showToast(this.checked?'2FA enabled!':'2FA disabled','info')"></div>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                      <div style="font-weight:600;font-size:13px;">SMS Authentication</div>
+                      <div style="font-size:12px;color:var(--text-muted);">Receive OTP via SMS</div>
+                    </div>
+                    <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox"
+                        onchange="Utils.showToast(this.checked?'SMS 2FA enabled':'SMS 2FA disabled','info')"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Active Sessions</h3>
+                </div>
+                <div class="table-wrapper">
+                  <table class="erp-table">
+                    <thead>
+                      <tr>
+                        <th>Device</th>
+                        <th>Browser</th>
+                        <th>Location</th>
+                        <th>Last Active</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><i class="bi bi-laptop"></i> MacBook Pro</td>
+                        <td>Chrome 124</td>
+                        <td>New York, US</td>
+                        <td style="color:var(--success);">Now (Current)</td>
+                        <td>—</td>
+                      </tr>
+                      <tr>
+                        <td><i class="bi bi-phone"></i> iPhone 16</td>
+                        <td>Safari 18</td>
+                        <td>New York, US</td>
+                        <td>2 hours ago</td>
+                        <td><button class="btn-erp btn-danger-ghost btn-sm"
+                            onclick="Utils.showToast('Session revoked','danger')">Revoke</button></td>
+                      </tr>
+                      <tr>
+                        <td><i class="bi bi-display"></i> Windows PC</td>
+                        <td>Edge 124</td>
+                        <td>Boston, US</td>
+                        <td>Yesterday</td>
+                        <td><button class="btn-erp btn-danger-ghost btn-sm"
+                            onclick="Utils.showToast('Session revoked','danger')">Revoke</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div style="padding:14px 20px;"><button class="btn-erp btn-danger-ghost btn-sm"
+                    onclick="Utils.showToast('All other sessions revoked','danger')"><i class="bi bi-shield-x"></i>
+                    Revoke All Other Sessions</button></div>
+              </div>
+            </div>
+
+            <!-- APPEARANCE -->
+            <div id="setting-appearance" style="display:none;">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h3 class="card-title">Appearance & Theme</h3>
+                </div>
+                <div class="card-body">
+                  <div class="mb-4">
+                    <label class="form-label">Color Mode</label>
+                    <div class="d-flex gap-3 flex-wrap">
+                      <label style="cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;">
+                        <div
+                          style="width:80px;height:56px;background:#F0F2F7;border-radius:10px;border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;">
+                          <div style="width:40px;height:32px;background:#0D1321;border-radius:5px;"></div>
+                        </div>
+                        <span style="font-size:11px;font-weight:600;">Light</span>
+                      </label>
+                      <label style="cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;"
+                        onclick="Utils.showToast('Dark mode coming soon!','info')">
+                        <div
+                          style="width:80px;height:56px;background:#0D1321;border-radius:10px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;">
+                          <div
+                            style="width:40px;height:32px;background:#1E293B;border-radius:5px;border:1px solid #334155;">
+                          </div>
+                        </div>
+                        <span style="font-size:11px;font-weight:600;">Dark</span>
+                      </label>
+                      <label style="cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;"
+                        onclick="Utils.showToast('System mode coming soon!','info')">
+                        <div
+                          style="width:80px;height:56px;background:linear-gradient(135deg,#F0F2F7 50%,#0D1321 50%);border-radius:10px;border:2px solid var(--border);">
+                        </div>
+                        <span style="font-size:11px;font-weight:600;">System</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label">Accent Color</label>
+                    <div class="d-flex gap-2 flex-wrap">
+                      <div onclick="setAccent('#F5A623',this)"
+                        style="width:32px;height:32px;border-radius:50%;background:#F5A623;cursor:pointer;border:3px solid #F5A623;box-shadow:0 0 0 2px white,0 0 0 4px #F5A623;"
+                        title="Amber (Default)"></div>
+                      <div onclick="setAccent('#3B82F6',this)"
+                        style="width:32px;height:32px;border-radius:50%;background:#3B82F6;cursor:pointer;border:3px solid transparent;"
+                        title="Blue"></div>
+                      <div onclick="setAccent('#22C55E',this)"
+                        style="width:32px;height:32px;border-radius:50%;background:#22C55E;cursor:pointer;border:3px solid transparent;"
+                        title="Green"></div>
+                      <div onclick="setAccent('#8B5CF6',this)"
+                        style="width:32px;height:32px;border-radius:50%;background:#8B5CF6;cursor:pointer;border:3px solid transparent;"
+                        title="Purple"></div>
+                      <div onclick="setAccent('#EF4444',this)"
+                        style="width:32px;height:32px;border-radius:50%;background:#EF4444;cursor:pointer;border:3px solid transparent;"
+                        title="Red"></div>
+                      <div onclick="setAccent('#06B6D4',this)"
+                        style="width:32px;height:32px;border-radius:50%;background:#06B6D4;cursor:pointer;border:3px solid transparent;"
+                        title="Cyan"></div>
+                    </div>
+                  </div>
+                  <div class="row g-3">
+                    <div class="col-md-6"><label class="form-label">Font Size</label><select class="form-select"
+                        onchange="Utils.showToast('Font size updated!','info')">
+                        <option>Small (12px)</option>
+                        <option selected>Medium (14px)</option>
+                        <option>Large (16px)</option>
+                      </select></div>
+                    <div class="col-md-6"><label class="form-label">Sidebar Default</label><select class="form-select"
+                        onchange="Utils.showToast('Sidebar preference saved!','info')">
+                        <option selected>Expanded</option>
+                        <option>Collapsed</option>
+                      </select></div>
+                    <div class="col-12">
+                      <div class="d-flex align-items-center justify-content-between py-2"
+                        style="border-top:1px solid var(--border);">
+                        <div>
+                          <div style="font-weight:600;font-size:13px;">Compact Tables</div>
+                          <div style="font-size:12px;color:var(--text-muted);">Reduce row padding for more data density
+                          </div>
+                        </div>
+                        <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox"
+                            onchange="Utils.showToast('Table density updated!','info')"></div>
+                      </div>
+                      <div class="d-flex align-items-center justify-content-between py-2"
+                        style="border-top:1px solid var(--border);">
+                        <div>
+                          <div style="font-weight:600;font-size:13px;">Smooth Animations</div>
+                          <div style="font-size:12px;color:var(--text-muted);">Enable page and component transitions
+                          </div>
+                        </div>
+                        <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
+                            onchange="Utils.showToast('Animation preference saved!','info')"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- NOTIFICATIONS -->
+            <div id="setting-notifications" style="display:none;">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Notification Preferences</h3>
+                </div>
+                <div class="card-body">
+                  <div
+                    style="font-family:var(--font-display);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:12px;">
+                    Email Notifications</div>
+                  <div id="notifList"></div>
+                  <div
+                    style="font-family:var(--font-display);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin:20px 0 12px;">
+                    In-App Alerts</div>
+                  <div id="alertList"></div>
+                  <div class="mt-3 d-flex justify-content-end">
+                    <button class="btn-erp btn-primary"
+                      onclick="Utils.showToast('Notification preferences saved!')">Save Preferences</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMPANY -->
+            <div id="setting-company" style="display:none;">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h3 class="card-title">Company Information</h3>
+                </div>
+                <div class="card-body">
+                  <div class="row g-3">
+                    <div class="col-md-8"><label class="form-label">Company Name</label><input class="form-control"
+                        value="ASML -  ERP Corp."></div>
+                    <div class="col-md-4"><label class="form-label">Industry</label><select class="form-select">
+                        <option selected>Technology</option>
+                        <option>Retail</option>
+                        <option>Manufacturing</option>
+                        <option>Healthcare</option>
+                      </select></div>
+                    <div class="col-md-6"><label class="form-label">Company Email</label><input type="email"
+                        class="form-control" value="info@ASML -  ERP.com"></div>
+                    <div class="col-md-6"><label class="form-label">Phone</label><input class="form-control"
+                        value="+1 (800) 123-4567"></div>
+                    <div class="col-12"><label class="form-label">Address</label><input class="form-control"
+                        value="100 Tech Avenue, Suite 2400, New York, NY 10001, USA"></div>
+                    <div class="col-md-6"><label class="form-label">Website</label><input class="form-control"
+                        value="https://ASML -  ERP.com"></div>
+                    <div class="col-md-6"><label class="form-label">Tax ID / VAT</label><input class="form-control"
+                        value="US-12-3456789"></div>
+                    <div class="col-md-6"><label class="form-label">Base Currency</label><select class="form-select">
+                        <option selected>USD ($)</option>
+                        <option>EUR (€)</option>
+                        <option>GBP (£)</option>
+                      </select></div>
+                    <div class="col-md-6"><label class="form-label">Fiscal Year Start</label><select
+                        class="form-select">
+                        <option selected>January</option>
+                        <option>April</option>
+                        <option>July</option>
+                      </select></div>
+                  </div>
+                  <div class="mt-3 d-flex justify-content-end">
+                    <button class="btn-erp btn-primary" onclick="Utils.showToast('Company info saved!')">Save
+                      Changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- USERS & ROLES -->
+            <div id="setting-users" style="display:none;">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h3 class="card-title">Users & Access Control</h3>
+                  <button class="btn-erp btn-primary btn-sm" onclick="Utils.showToast('Invite sent!','success')"><i
+                      class="bi bi-person-plus"></i> Invite User</button>
+                </div>
+                <div class="table-wrapper">
+                  <table class="erp-table">
+                    <thead>
+                      <tr>
+                        <th>User</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Last Login</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="avatar-sm" style="background:var(--accent-light);color:var(--accent);">AD</div>
+                            <strong>Admin User</strong>
+                          </div>
+                        </td>
+                        <td>admin@ASML -  ERP.com</td>
+                        <td><span class="badge-status badge-danger">Super Admin</span></td>
+                        <td>Now</td>
+                        <td><span class="badge-status badge-success">Active</span></td>
+                        <td>
+                          <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                                class="bi bi-pencil"></i></button></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="avatar-sm" style="background:#DCFCE7;color:#16A34A;">AJ</div>Alice Johnson
+                          </div>
+                        </td>
+                        <td>alice@ASML -  ERP.com</td>
+                        <td><span class="badge-status badge-info">Manager</span></td>
+                        <td>Today 09:12</td>
+                        <td><span class="badge-status badge-success">Active</span></td>
+                        <td>
+                          <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                                class="bi bi-pencil"></i></button><button class="btn-erp btn-danger-ghost btn-sm"
+                              onclick="Utils.showToast('User deactivated','warning')"><i
+                                class="bi bi-person-x"></i></button></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="avatar-sm" style="background:#DBEAFE;color:#2563EB;">BM</div>Bob Martinez
+                          </div>
+                        </td>
+                        <td>bob@ASML -  ERP.com</td>
+                        <td><span class="badge-status badge-warning">Staff</span></td>
+                        <td>Yesterday</td>
+                        <td><span class="badge-status badge-success">Active</span></td>
+                        <td>
+                          <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                                class="bi bi-pencil"></i></button><button class="btn-erp btn-danger-ghost btn-sm"
+                              onclick="Utils.showToast('User deactivated','warning')"><i
+                                class="bi bi-person-x"></i></button></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="avatar-sm" style="background:#FEE2E2;color:#DC2626;">GH</div>Guest Holder
+                          </div>
+                        </td>
+                        <td>guest@ASML -  ERP.com</td>
+                        <td><span class="badge-status badge-neutral">Read-Only</span></td>
+                        <td>3 days ago</td>
+                        <td><span class="badge-status badge-warning">Pending</span></td>
+                        <td>
+                          <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                                class="bi bi-pencil"></i></button><button class="btn-erp btn-danger-ghost btn-sm"
+                              onclick="Utils.showToast('User removed','danger')"><i class="bi bi-trash"></i></button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Roles & Permissions</h3><button class="btn-erp btn-outline btn-sm"
+                    onclick="Utils.showToast('New role created!','success')"><i class="bi bi-plus"></i> New
+                    Role</button>
+                </div>
+                <div class="table-wrapper">
+                  <table class="erp-table">
+                    <thead>
+                      <tr>
+                        <th>Role</th>
+                        <th>Users</th>
+                        <th>Modules Access</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Super Admin</strong></td>
+                        <td>1</td>
+                        <td>All modules (read/write/delete)</td>
+                        <td><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-pencil"></i></button></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Manager</strong></td>
+                        <td>4</td>
+                        <td>Sales, HR, CRM, Reports (read/write)</td>
+                        <td><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-pencil"></i></button></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Staff</strong></td>
+                        <td>28</td>
+                        <td>Sales, Inventory (read/write)</td>
+                        <td><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-pencil"></i></button></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Read-Only</strong></td>
+                        <td>8</td>
+                        <td>Dashboard, Reports (read only)</td>
+                        <td><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-pencil"></i></button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- INTEGRATIONS -->
+            <div id="setting-integrations" style="display:none;">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Connected Integrations</h3>
+                </div>
+                <div class="card-body" style="padding:0;">
+                  <div id="integrationsList"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- BILLING -->
+            <div id="setting-billing" style="display:none;">
+              <div class="card mb-4" style="background:linear-gradient(135deg,#0D1321,#1E293B);color:#fff;border:none;">
+                <div class="card-body" style="padding:28px;">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <div
+                        style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">
+                        Current Plan</div>
+                      <div style="font-family:var(--font-display);font-size:28px;font-weight:800;">Enterprise</div>
+                      <div style="color:rgba(255,255,255,0.6);font-size:13px;margin-top:4px;">Unlimited users · All
+                        modules · Priority support</div>
+                    </div>
+                    <div style="text-align:right;">
+                      <div style="font-family:var(--font-display);font-size:32px;font-weight:800;color:var(--accent);">
+                        $299<span style="font-size:16px;font-weight:400;color:rgba(255,255,255,0.5);">/mo</span></div>
+                      <div style="font-size:11px;color:rgba(255,255,255,0.4);">Billed annually · Next renewal Jun 1,
+                        2027</div>
+                    </div>
+                  </div>
+                  <div class="row g-3 mt-2">
+                    <div class="col-md-4">
+                      <div style="font-size:11px;color:rgba(255,255,255,0.5);">Users</div>
+                      <div style="font-weight:700;">342 / Unlimited</div>
+                    </div>
+                    <div class="col-md-4">
+                      <div style="font-size:11px;color:rgba(255,255,255,0.5);">Storage</div>
+                      <div style="font-weight:700;">128 GB / 500 GB</div>
+                    </div>
+                    <div class="col-md-4">
+                      <div style="font-size:11px;color:rgba(255,255,255,0.5);">API Calls</div>
+                      <div style="font-weight:700;">1.2M / Month</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Billing History</h3>
+                </div>
+                <div class="table-wrapper">
+                  <table class="erp-table">
+                    <thead>
+                      <tr>
+                        <th>Invoice</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Download</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>INV-2026-05</strong></td>
+                        <td>May 1, 2026</td>
+                        <td>$299.00</td>
+                        <td><span class="badge-status badge-success">Paid</span></td>
+                        <td><button class="btn-erp btn-ghost btn-sm"
+                            onclick="Utils.showToast('Downloading invoice...','info')"><i
+                              class="bi bi-download"></i></button></td>
+                      </tr>
+                      <tr>
+                        <td><strong>INV-2026-04</strong></td>
+                        <td>Apr 1, 2026</td>
+                        <td>$299.00</td>
+                        <td><span class="badge-status badge-success">Paid</span></td>
+                        <td><button class="btn-erp btn-ghost btn-sm"
+                            onclick="Utils.showToast('Downloading invoice...','info')"><i
+                              class="bi bi-download"></i></button></td>
+                      </tr>
+                      <tr>
+                        <td><strong>INV-2026-03</strong></td>
+                        <td>Mar 1, 2026</td>
+                        <td>$299.00</td>
+                        <td><span class="badge-status badge-success">Paid</span></td>
+                        <td><button class="btn-erp btn-ghost btn-sm"
+                            onclick="Utils.showToast('Downloading invoice...','info')"><i
+                              class="bi bi-download"></i></button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- AUDIT LOG -->
+            <div id="setting-audit" style="display:none;">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Audit Log</h3>
+                  <div class="d-flex gap-2">
+                    <div class="search-box"><i class="bi bi-search search-icon"></i><input type="text"
+                        class="form-control form-control-sm" placeholder="Filter events..."></div>
+                    <button class="btn-erp btn-outline btn-sm"
+                      onclick="Utils.showToast('Audit log exported!','success')"><i class="bi bi-download"></i>
+                      Export</button>
+                  </div>
+                </div>
+                <div class="table-wrapper">
+                  <table class="erp-table">
+                    <thead>
+                      <tr>
+                        <th>Timestamp</th>
+                        <th>User</th>
+                        <th>Action</th>
+                        <th>Module</th>
+                        <th>Details</th>
+                        <th>IP</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td style="font-size:11px;font-family:monospace;">2026-05-03 14:22:10</td>
+                        <td>Admin User</td>
+                        <td><span class="badge-status badge-success">Created</span></td>
+                        <td>Sales</td>
+                        <td>Order #ORD-8812 created</td>
+                        <td>192.168.1.1</td>
+                      </tr>
+                      <tr>
+                        <td style="font-size:11px;font-family:monospace;">2026-05-03 13:11:04</td>
+                        <td>Alice Johnson</td>
+                        <td><span class="badge-status badge-warning">Updated</span></td>
+                        <td>Inventory</td>
+                        <td>SKU-0101 stock adjusted +50</td>
+                        <td>192.168.1.44</td>
+                      </tr>
+                      <tr>
+                        <td style="font-size:11px;font-family:monospace;">2026-05-03 12:08:55</td>
+                        <td>Bob Martinez</td>
+                        <td><span class="badge-status badge-info">Viewed</span></td>
+                        <td>Finance</td>
+                        <td>Invoice INV-3319 viewed</td>
+                        <td>10.0.0.22</td>
+                      </tr>
+                      <tr>
+                        <td style="font-size:11px;font-family:monospace;">2026-05-02 16:40:21</td>
+                        <td>Admin User</td>
+                        <td><span class="badge-status badge-danger">Deleted</span></td>
+                        <td>HR</td>
+                        <td>Employee record #EMP-088 deleted</td>
+                        <td>192.168.1.1</td>
+                      </tr>
+                      <tr>
+                        <td style="font-size:11px;font-family:monospace;">2026-05-02 10:15:33</td>
+                        <td>Carol Wu</td>
+                        <td><span class="badge-status badge-success">Approved</span></td>
+                        <td>Purchase</td>
+                        <td>PO-2890 approved for $12,600</td>
+                        <td>10.0.0.15</td>
+                      </tr>
+                      <tr>
+                        <td style="font-size:11px;font-family:monospace;">2026-05-01 09:00:00</td>
+                        <td>System</td>
+                        <td><span class="badge-status badge-neutral">Auto</span></td>
+                        <td>Finance</td>
+                        <td>Payroll batch processed for May 2026</td>
+                        <td>—</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- BACKUP -->
+            <div id="setting-backup" style="display:none;">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h3 class="card-title">Backup & Data Export</h3>
+                </div>
+                <div class="card-body">
+                  <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                      <div class="card" style="background:var(--bg-base);box-shadow:none;">
+                        <div class="card-body text-center py-4"><i class="bi bi-cloud-check-fill"
+                            style="font-size:32px;color:var(--success);"></i>
+                          <div style="font-weight:700;margin-top:8px;">Last Backup</div>
+                          <div style="font-size:12px;color:var(--text-muted);">May 3, 2026 · 02:00 AM UTC</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="card" style="background:var(--bg-base);box-shadow:none;">
+                        <div class="card-body text-center py-4"><i class="bi bi-hdd-fill"
+                            style="font-size:32px;color:var(--accent);"></i>
+                          <div style="font-weight:700;margin-top:8px;">128 GB Used</div>
+                          <div style="font-size:12px;color:var(--text-muted);">of 500 GB · 25.6%</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Automatic Backup Schedule</label>
+                    <select class="form-select" style="max-width:300px;"
+                      onchange="Utils.showToast('Backup schedule updated!','success')">
+                      <option>Daily at 2:00 AM</option>
+                      <option>Every 12 hours</option>
+                      <option>Weekly</option>
+                      <option>Manual only</option>
+                    </select>
+                  </div>
+                  <div class="d-flex gap-2 flex-wrap">
+                    <button class="btn-erp btn-primary"
+                      onclick="Utils.showToast('Backup started! This may take a few minutes.','info')"><i
+                        class="bi bi-cloud-upload"></i> Backup Now</button>
+                    <button class="btn-erp btn-outline" onclick="Utils.showToast('Preparing data export...','info')"><i
+                        class="bi bi-download"></i> Export All Data (CSV)</button>
+                    <button class="btn-erp btn-outline" onclick="Utils.showToast('Preparing JSON export...','info')"><i
+                        class="bi bi-filetype-json"></i> Export JSON</button>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title" style="color:var(--danger);">Danger Zone</h3>
+                </div>
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between p-3 mb-2"
+                    style="border:1px solid var(--danger-bg);border-radius:var(--radius-md);background:var(--danger-bg);">
+                    <div>
+                      <div style="font-weight:600;color:var(--danger);font-size:13px;">Reset All Data</div>
+                      <div style="font-size:12px;color:var(--text-secondary);">Clear all records and start fresh. Cannot
+                        be undone.</div>
+                    </div>
+                    <button class="btn-erp btn-sm" style="background:var(--danger);color:#fff;border:none;"
+                      onclick="Utils.showToast('Action requires 2FA confirmation','warning')">Reset Data</button>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-between p-3"
+                    style="border:1px solid var(--danger-bg);border-radius:var(--radius-md);background:var(--danger-bg);">
+                    <div>
+                      <div style="font-weight:600;color:var(--danger);font-size:13px;">Delete Account</div>
+                      <div style="font-size:12px;color:var(--text-secondary);">Permanently delete this workspace and all
+                        data.</div>
+                    </div>
+                    <button class="btn-erp btn-sm" style="background:var(--danger);color:#fff;border:none;"
+                      onclick="Utils.showToast('Action requires admin approval','warning')">Delete Account</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </main>
+      <footer class="page-footer"><span>© 2026 ASML -  ERP</span><span>Settings v3.2</span></footer>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/global.js"></script>
+  <script>
+    function showSetting(name, el) {
+      document.querySelectorAll('[id^="setting-"]').forEach(s => s.style.display = 'none');
+      document.getElementById('setting-' + name).style.display = '';
+      document.querySelectorAll('.settings-nav a').forEach(a => a.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    function checkStrength(val) {
+      const bar = document.getElementById('strengthBar');
+      const label = document.getElementById('strengthLabel');
+      let score = 0;
+      if (val.length >= 8) score++;
+      if (/[A-Z]/.test(val)) score++;
+      if (/[0-9]/.test(val)) score++;
+      if (/[^A-Za-z0-9]/.test(val)) score++;
+      const levels = [
+        { w: '0%', c: '#EF4444', t: '' },
+        { w: '25%', c: '#EF4444', t: 'Weak' },
+        { w: '50%', c: '#F59E0B', t: 'Fair' },
+        { w: '75%', c: '#3B82F6', t: 'Good' },
+        { w: '100%', c: '#22C55E', t: 'Strong' }
+      ];
+      bar.style.width = levels[score].w;
+      bar.style.background = levels[score].c;
+      label.textContent = levels[score].t;
+      label.style.color = levels[score].c;
+    }
+
+    function setAccent(color, el) {
+      document.documentElement.style.setProperty('--accent', color);
+      document.querySelectorAll('[onclick^="setAccent"]').forEach(d => d.style.boxShadow = 'none');
+      el.style.boxShadow = `0 0 0 2px white, 0 0 0 4px ${color}`;
+      Utils.showToast('Accent color updated!');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Notification prefs
+      const notifs = ['New sale order received', 'Purchase order approved', 'Low stock alert', 'Invoice overdue', 'New employee onboarding', 'Payroll processed'];
+      document.getElementById('notifList').innerHTML = notifs.map(n => `
+    <div class="d-flex align-items-center justify-content-between py-2" style="border-bottom:1px solid var(--border);">
+      <span style="font-size:13px;">${n}</span>
+      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked onchange="Utils.showToast('Preference saved!','info')"></div>
+    </div>`).join('');
+
+      const alerts = ['Dashboard KPI alerts', 'Inventory stock warnings', 'CRM follow-up reminders', 'Approval notifications'];
+      document.getElementById('alertList').innerHTML = alerts.map(a => `
+    <div class="d-flex align-items-center justify-content-between py-2" style="border-bottom:1px solid var(--border);">
+      <span style="font-size:13px;">${a}</span>
+      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked onchange="Utils.showToast('Preference saved!','info')"></div>
+    </div>`).join('');
+
+      // Integrations
+      const integrations = [
+        { name: 'Slack', desc: 'Team notifications and alerts', icon: 'bi-slack', connected: true, color: '#611f69' },
+        { name: 'Stripe', desc: 'Payment processing and invoicing', icon: 'bi-credit-card-2-front', connected: true, color: '#635bff' },
+        { name: 'Google Workspace', desc: 'SSO and calendar sync', icon: 'bi-google', connected: true, color: '#4285F4' },
+        { name: 'Zapier', desc: 'Workflow automation', icon: 'bi-lightning-charge', connected: false, color: '#FF4A00' },
+        { name: 'QuickBooks', desc: 'Accounting sync', icon: 'bi-calculator', connected: false, color: '#2CA01C' },
+        { name: 'Mailchimp', desc: 'Email marketing campaigns', icon: 'bi-envelope-paper', connected: false, color: '#FFE01B' },
+      ];
+      document.getElementById('integrationsList').innerHTML = integrations.map(i => `
+    <div class="d-flex align-items-center gap-3 p-4" style="border-bottom:1px solid var(--border);">
+      <div style="width:44px;height:44px;border-radius:10px;background:${i.color}22;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <i class="bi ${i.icon}" style="font-size:20px;color:${i.color};"></i>
+      </div>
+      <div class="flex-1">
+        <div style="font-weight:600;font-size:13px;">${i.name}</div>
+        <div style="font-size:12px;color:var(--text-muted);">${i.desc}</div>
+      </div>
+      ${i.connected
+          ? `<span class="badge-status badge-success" style="margin-right:8px;">Connected</span><button class="btn-erp btn-outline btn-sm" onclick="Utils.showToast('${i.name} disconnected','warning')">Disconnect</button>`
+          : `<button class="btn-erp btn-primary btn-sm" onclick="Utils.showToast('Connecting to ${i.name}...','info')">Connect</button>`}
+    </div>`).join('');
+    });
+  </script>
+</body>
+
+</html>

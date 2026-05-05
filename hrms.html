@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HRMS — ASML-ERP</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div id="toastWrap" class="position-fixed bottom-0 end-0 p-3" style="z-index:9999;"></div>
+  <div class="erp-wrapper">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">N</div><span class="logo-text">ASML -  ERP</span>
+      </div>
+      <nav class="sidebar-nav">
+        <ul style="list-style:none;padding:0;margin:0;">
+          <li class="nav-section-label">Main</li>
+          <li class="nav-item"><a href="index.html" class="nav-link" data-tooltip="Dashboard"><i
+                class="bi bi-grid-1x2-fill nav-icon"></i><span class="nav-label">Dashboard</span></a></li>
+          <li class="nav-section-label">Operations</li>
+          <li class="nav-item"><a href="sales.html" class="nav-link" data-tooltip="Sales"><i
+                class="bi bi-graph-up-arrow nav-icon"></i><span class="nav-label">Sales</span></a></li>
+          <li class="nav-item"><a href="purchase.html" class="nav-link" data-tooltip="Purchase"><i
+                class="bi bi-bag-fill nav-icon"></i><span class="nav-label">Purchase</span></a></li>
+          <li class="nav-item"><a href="inventory.html" class="nav-link" data-tooltip="Inventory"><i
+                class="bi bi-boxes nav-icon"></i><span class="nav-label">Inventory</span></a></li>
+          <li class="nav-item"><a href="warehouse.html" class="nav-link" data-tooltip="Warehouse"><i
+                class="bi bi-building nav-icon"></i><span class="nav-label">Warehouse</span></a></li>
+          <li class="nav-item"><a href="ecommerce.html" class="nav-link" data-tooltip="E-Commerce"><i
+                class="bi bi-cart4 nav-icon"></i><span class="nav-label">E-Commerce</span></a></li>
+          <li class="nav-section-label">People &amp; Finance</li>
+          <li class="nav-item"><a href="hrms.html" class="nav-link" data-tooltip="HRMS"><i
+                class="bi bi-people-fill nav-icon"></i><span class="nav-label">HRMS</span></a></li>
+          <li class="nav-item"><a href="crm.html" class="nav-link" data-tooltip="CRM"><i
+                class="bi bi-person-lines-fill nav-icon"></i><span class="nav-label">CRM</span></a></li>
+          <li class="nav-item"><a href="finance.html" class="nav-link" data-tooltip="Finance"><i
+                class="bi bi-wallet2 nav-icon"></i><span class="nav-label">Finance</span></a></li>
+          <li class="nav-section-label">Intelligence</li>
+          <li class="nav-item"><a href="reports.html" class="nav-link" data-tooltip="Reports"><i
+                class="bi bi-bar-chart-fill nav-icon"></i><span class="nav-label">Reports</span></a></li>
+          <li class="nav-section-label">System</li>
+          <li class="nav-item"><a href="settings.html" class="nav-link" data-tooltip="Settings"><i
+                class="bi bi-gear-fill nav-icon"></i><span class="nav-label">Settings</span></a></li>
+          <li class="nav-item"><a href="#" class="nav-link" data-tooltip="Logout"><i
+                class="bi bi-box-arrow-left nav-icon"></i><span class="nav-label">Logout</span></a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="user-avatar">AD</div>
+          <div class="user-info">
+            <div class="user-name">Admin User</div>
+            <div class="user-role">Super Admin</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="topbar">
+        <button class="topbar-toggle" id="sidebarToggle"><i class="bi bi-list" style="font-size:18px;"></i></button>
+        <div class="topbar-breadcrumb"><span class="breadcrumb-trail text-muted-erp">People & Finance</span><i
+            class="bi bi-chevron-right text-muted-erp" style="font-size:10px;"></i><span
+            class="current-page">HRMS</span></div>
+        <div class="topbar-actions">
+          <div class="dropdown"><button class="topbar-btn" data-bs-toggle="dropdown"><i class="bi bi-bell"
+                style="font-size:14px;"></i><span class="notif-badge"></span></button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">No new notifications</a></li>
+            </ul>
+          </div>
+          <div class="dropdown"><button class="topbar-profile" data-bs-toggle="dropdown">
+              <div class="profile-avatar">AD</div><span class="profile-name">Admin</span><i class="bi bi-chevron-down"
+                style="font-size:10px;color:var(--text-muted);"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="settings.html"><i class="bi bi-person"></i> Profile</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Human Resources</h1>
+            <p class="page-subtitle">Employees, attendance, payroll, and HR operations.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn-erp btn-outline btn-sm"><i class="bi bi-download"></i> Export</button>
+            <button class="btn-erp btn-primary" data-bs-toggle="modal" data-bs-target="#addEmpModal"><i
+                class="bi bi-person-plus"></i> Add Employee</button>
+          </div>
+        </div>
+
+        <!-- KPIs -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#3B82F6;">
+              <div class="kpi-icon" style="background:#DBEAFE;color:#2563EB;"><i class="bi bi-people"></i></div>
+              <div class="kpi-info">
+                <div class="kpi-value">342</div>
+                <div class="kpi-label">Total Employees</div>
+                <div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> +2 this month</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#22C55E;">
+              <div class="kpi-icon" style="background:#DCFCE7;color:#16A34A;"><i class="bi bi-person-check"></i></div>
+              <div class="kpi-info">
+                <div class="kpi-value">316</div>
+                <div class="kpi-label">Present Today</div>
+                <div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> 92.4%</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#F59E0B;">
+              <div class="kpi-icon" style="background:#FEF3C7;color:#D97706;"><i class="bi bi-calendar-x"></i></div>
+              <div class="kpi-info">
+                <div class="kpi-value">26</div>
+                <div class="kpi-label">On Leave</div>
+                <div class="kpi-change neutral"><i class="bi bi-dash"></i> 7.6% of staff</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#8B5CF6;">
+              <div class="kpi-icon" style="background:#EDE9FE;color:#7C3AED;"><i class="bi bi-cash-coin"></i></div>
+              <div class="kpi-info">
+                <div class="kpi-value">$1.24M</div>
+                <div class="kpi-label">Monthly Payroll</div>
+                <div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> 3.2%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mb-4" style="border-bottom:1px solid var(--border);">
+          <li class="nav-item"><a class="nav-link active" href="#" onclick="showHRTab('employees',this);return false;"
+              style="font-family:var(--font-display);font-size:13px;font-weight:600;">Employees</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showHRTab('attendance',this);return false;"
+              style="font-family:var(--font-display);font-size:13px;font-weight:600;">Attendance</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showHRTab('payroll',this);return false;"
+              style="font-family:var(--font-display);font-size:13px;font-weight:600;">Payroll</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showHRTab('leaves',this);return false;"
+              style="font-family:var(--font-display);font-size:13px;font-weight:600;">Leave Requests</a></li>
+        </ul>
+
+        <!-- Employees Tab -->
+        <div id="tab-employees">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h3 class="card-title">Employee Directory</h3>
+              <div class="d-flex gap-2 flex-wrap">
+                <div class="search-box"><i class="bi bi-search search-icon"></i><input type="text"
+                    class="form-control form-control-sm" placeholder="Search employees..."></div>
+                <select class="form-select form-select-sm" style="width:auto;">
+                  <option>All Departments</option>
+                  <option>Engineering</option>
+                  <option>Sales</option>
+                  <option>HR</option>
+                  <option>Finance</option>
+                </select>
+                <select class="form-select form-select-sm" style="width:auto;">
+                  <option>All Status</option>
+                  <option>Active</option>
+                  <option>On Leave</option>
+                  <option>Inactive</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrapper">
+              <table class="erp-table">
+                <thead>
+                  <tr>
+                    <th>Employee</th>
+                    <th>ID</th>
+                    <th>Department</th>
+                    <th>Designation</th>
+                    <th>Join Date</th>
+                    <th>Salary</th>
+                    <th>Attendance</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="avatar-sm" style="background:#DBEAFE;color:#2563EB;">AJ</div>
+                        <div>
+                          <div style="font-weight:600;font-size:13px;">Alice Johnson</div>
+                          <div style="font-size:11px;color:var(--text-muted);">alice@ASML -  ERP.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>#EMP-001</td>
+                    <td>Engineering</td>
+                    <td>Lead Developer</td>
+                    <td>Mar 2020</td>
+                    <td>$8,400/mo</td>
+                    <td><span style="color:var(--success);font-weight:600;">98%</span></td>
+                    <td><span class="badge-status badge-success">Active</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-pencil"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="avatar-sm" style="background:#DCFCE7;color:#16A34A;">BM</div>
+                        <div>
+                          <div style="font-weight:600;font-size:13px;">Bob Martinez</div>
+                          <div style="font-size:11px;color:var(--text-muted);">bob@ASML -  ERP.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>#EMP-002</td>
+                    <td>Sales</td>
+                    <td>Sales Manager</td>
+                    <td>Jun 2019</td>
+                    <td>$7,200/mo</td>
+                    <td><span style="color:var(--success);font-weight:600;">95%</span></td>
+                    <td><span class="badge-status badge-success">Active</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-pencil"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="avatar-sm" style="background:#FEF3C7;color:#D97706;">CW</div>
+                        <div>
+                          <div style="font-weight:600;font-size:13px;">Carol Wu</div>
+                          <div style="font-size:11px;color:var(--text-muted);">carol@ASML -  ERP.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>#EMP-003</td>
+                    <td>Finance</td>
+                    <td>CFO</td>
+                    <td>Jan 2018</td>
+                    <td>$14,000/mo</td>
+                    <td><span style="color:var(--warning);font-weight:600;">88%</span></td>
+                    <td><span class="badge-status badge-warning">On Leave</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-pencil"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="avatar-sm" style="background:#EDE9FE;color:#7C3AED;">DK</div>
+                        <div>
+                          <div style="font-weight:600;font-size:13px;">David Kim</div>
+                          <div style="font-size:11px;color:var(--text-muted);">david@ASML -  ERP.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>#EMP-004</td>
+                    <td>HR</td>
+                    <td>HR Manager</td>
+                    <td>Sep 2021</td>
+                    <td>$6,800/mo</td>
+                    <td><span style="color:var(--success);font-weight:600;">96%</span></td>
+                    <td><span class="badge-status badge-success">Active</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-pencil"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="avatar-sm" style="background:#FEE2E2;color:#DC2626;">ES</div>
+                        <div>
+                          <div style="font-weight:600;font-size:13px;">Emma Scott</div>
+                          <div style="font-size:11px;color:var(--text-muted);">emma@ASML -  ERP.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>#EMP-005</td>
+                    <td>Marketing</td>
+                    <td>Marketing Lead</td>
+                    <td>Apr 2022</td>
+                    <td>$6,200/mo</td>
+                    <td><span style="color:var(--success);font-weight:600;">94%</span></td>
+                    <td><span class="badge-status badge-success">Active</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-pencil"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="avatar-sm" style="background:#CFFAFE;color:#0891B2;">FP</div>
+                        <div>
+                          <div style="font-weight:600;font-size:13px;">Frank Patel</div>
+                          <div style="font-size:11px;color:var(--text-muted);">frank@ASML -  ERP.com</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>#EMP-006</td>
+                    <td>Engineering</td>
+                    <td>Backend Dev</td>
+                    <td>Nov 2022</td>
+                    <td>$7,600/mo</td>
+                    <td><span style="color:var(--danger);font-weight:600;">72%</span></td>
+                    <td><span class="badge-status badge-danger">Inactive</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-pencil"></i></button></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Dept Distribution -->
+          <div class="row g-3">
+            <div class="col-xl-4">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">By Department</h3>
+                </div>
+                <div class="card-body">
+                  <div class="chart-container" style="height:220px;"><canvas id="deptChart"></canvas></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-8">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Headcount Trend</h3>
+                </div>
+                <div class="card-body">
+                  <div class="chart-container" style="height:220px;"><canvas id="headcountChart"></canvas></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Attendance Tab (hidden) -->
+        <div id="tab-attendance" style="display:none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Attendance Overview — May 2026</h3>
+              <div class="d-flex gap-2">
+                <input type="month" class="form-control form-control-sm" style="width:auto;" value="2026-05">
+                <select class="form-select form-select-sm" style="width:auto;">
+                  <option>All Departments</option>
+                  <option>Engineering</option>
+                  <option>Sales</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrapper">
+              <table class="erp-table">
+                <thead>
+                  <tr>
+                    <th>Employee</th>
+                    <th>Days Present</th>
+                    <th>Absences</th>
+                    <th>Late</th>
+                    <th>Overtime Hrs</th>
+                    <th>Attendance %</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Alice Johnson</strong></td>
+                    <td>21</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>12</td>
+                    <td><span style="color:var(--success);font-weight:600;">95.5%</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Bob Martinez</strong></td>
+                    <td>20</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>5</td>
+                    <td><span style="color:var(--success);font-weight:600;">90.9%</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Carol Wu</strong></td>
+                    <td>18</td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td><span style="color:var(--warning);font-weight:600;">81.8%</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>David Kim</strong></td>
+                    <td>22</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>8</td>
+                    <td><span style="color:var(--success);font-weight:600;">100%</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Emma Scott</strong></td>
+                    <td>21</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>4</td>
+                    <td><span style="color:var(--success);font-weight:600;">95.5%</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payroll Tab (hidden) -->
+        <div id="tab-payroll" style="display:none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Payroll — May 2026</h3>
+              <div class="d-flex gap-2">
+                <input type="month" class="form-control form-control-sm" style="width:auto;" value="2026-05">
+                <button class="btn-erp btn-primary btn-sm"
+                  onclick="Utils.showToast('Payroll processed for May 2026!','success')"><i class="bi bi-play-fill"></i>
+                  Process Payroll</button>
+              </div>
+            </div>
+            <div class="table-wrapper">
+              <table class="erp-table">
+                <thead>
+                  <tr>
+                    <th>Employee</th>
+                    <th>Basic Salary</th>
+                    <th>Allowances</th>
+                    <th>Overtime</th>
+                    <th>Deductions</th>
+                    <th>Net Pay</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Alice Johnson</strong></td>
+                    <td>$8,400</td>
+                    <td>$600</td>
+                    <td>$360</td>
+                    <td>$840</td>
+                    <td style="font-weight:700;color:var(--success);">$8,520</td>
+                    <td><span class="badge-status badge-success">Paid</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Bob Martinez</strong></td>
+                    <td>$7,200</td>
+                    <td>$500</td>
+                    <td>$150</td>
+                    <td>$720</td>
+                    <td style="font-weight:700;color:var(--success);">$7,130</td>
+                    <td><span class="badge-status badge-success">Paid</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Carol Wu</strong></td>
+                    <td>$14,000</td>
+                    <td>$1,000</td>
+                    <td>$0</td>
+                    <td>$1,400</td>
+                    <td style="font-weight:700;color:var(--success);">$13,600</td>
+                    <td><span class="badge-status badge-warning">Pending</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>David Kim</strong></td>
+                    <td>$6,800</td>
+                    <td>$400</td>
+                    <td>$240</td>
+                    <td>$680</td>
+                    <td style="font-weight:700;color:var(--success);">$6,760</td>
+                    <td><span class="badge-status badge-success">Paid</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Emma Scott</strong></td>
+                    <td>$6,200</td>
+                    <td>$350</td>
+                    <td>$120</td>
+                    <td>$620</td>
+                    <td style="font-weight:700;color:var(--success);">$6,050</td>
+                    <td><span class="badge-status badge-success">Paid</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leaves Tab (hidden) -->
+        <div id="tab-leaves" style="display:none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Leave Requests</h3><button class="btn-erp btn-primary btn-sm"><i
+                  class="bi bi-plus"></i> New Request</button>
+            </div>
+            <div class="table-wrapper">
+              <table class="erp-table">
+                <thead>
+                  <tr>
+                    <th>Employee</th>
+                    <th>Leave Type</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Days</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Carol Wu</strong></td>
+                    <td>Annual Leave</td>
+                    <td>May 3</td>
+                    <td>May 7</td>
+                    <td>5</td>
+                    <td>Family vacation</td>
+                    <td><span class="badge-status badge-success">Approved</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Frank Patel</strong></td>
+                    <td>Sick Leave</td>
+                    <td>May 1</td>
+                    <td>May 2</td>
+                    <td>2</td>
+                    <td>Medical</td>
+                    <td><span class="badge-status badge-warning">Pending</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"
+                          onclick="Utils.showToast('Leave approved!','success')"><i
+                            class="bi bi-check-lg"></i></button><button class="btn-erp btn-danger-ghost btn-sm"
+                          onclick="Utils.showToast('Leave rejected','danger')"><i class="bi bi-x-lg"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Emma Scott</strong></td>
+                    <td>Maternity</td>
+                    <td>Jun 1</td>
+                    <td>Aug 31</td>
+                    <td>91</td>
+                    <td>Maternity leave</td>
+                    <td><span class="badge-status badge-info">Approved</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="page-footer"><span>© 2026 ASML -  ERP</span><span>HRMS Module v3.2</span></footer>
+    </div>
+  </div>
+
+  <!-- Add Employee Modal -->
+  <div class="modal fade" id="addEmpModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Employee</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label">First Name</label><input class="form-control"
+                placeholder="First name"></div>
+            <div class="col-md-6"><label class="form-label">Last Name</label><input class="form-control"
+                placeholder="Last name"></div>
+            <div class="col-md-6"><label class="form-label">Email</label><input type="email" class="form-control"
+                placeholder="name@company.com"></div>
+            <div class="col-md-6"><label class="form-label">Phone</label><input class="form-control"
+                placeholder="+1 xxx xxx xxxx"></div>
+            <div class="col-md-6"><label class="form-label">Department</label><select class="form-select">
+                <option>Engineering</option>
+                <option>Sales</option>
+                <option>HR</option>
+                <option>Finance</option>
+                <option>Marketing</option>
+              </select></div>
+            <div class="col-md-6"><label class="form-label">Designation</label><input class="form-control"
+                placeholder="Job title"></div>
+            <div class="col-md-6"><label class="form-label">Join Date</label><input type="date" class="form-control">
+            </div>
+            <div class="col-md-6"><label class="form-label">Salary (Monthly)</label><input type="number"
+                class="form-control" placeholder="0.00"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-erp btn-outline" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn-erp btn-primary"
+            onclick="Utils.showToast('Employee added successfully!');bootstrap.Modal.getInstance(document.getElementById('addEmpModal')).hide();">Add
+            Employee</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/global.js"></script>
+  <script>
+    function showHRTab(tab, el) {
+      ['employees', 'attendance', 'payroll', 'leaves'].forEach(t => { document.getElementById('tab-' + t).style.display = t === tab ? '' : 'none'; });
+      document.querySelectorAll('.nav-tabs .nav-link').forEach(a => a.classList.remove('active'));
+      el.classList.add('active');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      ChartHelper.doughnutChart(document.getElementById('deptChart').getContext('2d'),
+        ['Engineering', 'Sales', 'Finance', 'HR', 'Marketing', 'Other'],
+        [98, 72, 44, 28, 36, 64], ['#F5A623', '#3B82F6', '#22C55E', '#8B5CF6', '#EF4444', '#06B6D4']
+      );
+      ChartHelper.lineChart(document.getElementById('headcountChart').getContext('2d'),
+        ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        [{ label: 'Total Headcount', data: [310, 315, 318, 322, 326, 330, 334, 336, 338, 340, 341, 342], borderColor: '#F5A623', tension: 0.4, fill: false, pointBackgroundColor: '#F5A623', pointRadius: 4 }]
+      );
+    });
+  </script>
+</body>
+
+</html>

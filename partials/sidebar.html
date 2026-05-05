@@ -1,0 +1,143 @@
+<!-- ============================================================
+     SIDEBAR PARTIAL — include in every page
+     ============================================================ -->
+<aside class="sidebar" id="sidebar" role="navigation" aria-label="Main Navigation">
+
+  <!-- Logo -->
+  <div class="sidebar-logo">
+    <div class="logo-icon">ASML</div>
+    <span class="logo-text">ASML - ERP</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="sidebar-nav">
+    <ul style="list-style:none;padding:0;margin:0;">
+
+      <li class="nav-section-label">Main</li>
+
+      <!-- Dashboard -->
+      <li class="nav-item">
+        <a href="index.html" class="nav-link" data-tooltip="Dashboard">
+          <i class="bi bi-grid-1x2-fill nav-icon"></i>
+          <span class="nav-label">Dashboard</span>
+        </a>
+      </li>
+
+      <li class="nav-section-label">Operations</li>
+
+      <!-- Sales -->
+      <li class="nav-item">
+        <a href="sales.html" class="nav-link" data-tooltip="Sales">
+          <i class="bi bi-graph-up-arrow nav-icon"></i>
+          <span class="nav-label">Sales</span>
+        </a>
+      </li>
+
+      <!-- Purchase -->
+      <li class="nav-item">
+        <a href="purchase.html" class="nav-link" data-tooltip="Purchase">
+          <i class="bi bi-bag-fill nav-icon"></i>
+          <span class="nav-label">Purchase</span>
+        </a>
+      </li>
+
+      <!-- Inventory -->
+      <li class="nav-item">
+        <a href="inventory.html" class="nav-link" data-tooltip="Inventory">
+          <i class="bi bi-boxes nav-icon"></i>
+          <span class="nav-label">Inventory</span>
+        </a>
+      </li>
+
+      <!-- Warehouse -->
+      <li class="nav-item">
+        <a href="warehouse.html" class="nav-link" data-tooltip="Warehouse">
+          <i class="bi bi-building nav-icon"></i>
+          <span class="nav-label">Warehouse</span>
+        </a>
+      </li>
+
+      <!-- E-Commerce -->
+      <li class="nav-item">
+        <a href="ecommerce.html" class="nav-link" data-tooltip="E-Commerce">
+          <i class="bi bi-cart4 nav-icon"></i>
+          <span class="nav-label">E-Commerce</span>
+        </a>
+      </li>
+
+      <li class="nav-section-label">People & Finance</li>
+
+      <!-- HRMS -->
+      <li class="nav-item">
+        <a href="hrms.html" class="nav-link" data-tooltip="HRMS">
+          <i class="bi bi-people-fill nav-icon"></i>
+          <span class="nav-label">HRMS</span>
+        </a>
+      </li>
+
+      <!-- CRM -->
+      <li class="nav-item">
+        <a href="crm.html" class="nav-link" data-tooltip="CRM">
+          <i class="bi bi-person-lines-fill nav-icon"></i>
+          <span class="nav-label">CRM</span>
+        </a>
+      </li>
+
+      <!-- Finance -->
+      <li class="nav-item">
+        <a href="finance.html" class="nav-link" data-tooltip="Finance">
+          <i class="bi bi-wallet2 nav-icon"></i>
+          <span class="nav-label">Finance</span>
+        </a>
+      </li>
+
+      <li class="nav-section-label">Intelligence</li>
+
+      <!-- Reports -->
+      <li class="nav-item">
+        <a href="reports.html" class="nav-link" data-tooltip="Reports">
+          <i class="bi bi-bar-chart-fill nav-icon"></i>
+          <span class="nav-label">Reports</span>
+        </a>
+      </li>
+
+      <li class="nav-section-label">System</li>
+
+      <!-- Settings -->
+      <li class="nav-item">
+        <a href="settings.html" class="nav-link" data-tooltip="Settings">
+          <i class="bi bi-gear-fill nav-icon"></i>
+          <span class="nav-label">Settings</span>
+        </a>
+      </li>
+
+      <!-- Logout -->
+      <li class="nav-item">
+        <a href="#" class="nav-link" data-tooltip="Logout" onclick="Utils.showToast('Logged out successfully','info'); return false;">
+          <i class="bi bi-box-arrow-left nav-icon"></i>
+          <span class="nav-label">Logout</span>
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+
+  <!-- Sidebar Footer / User -->
+  <div class="sidebar-footer">
+    <div class="sidebar-user" data-bs-toggle="dropdown" aria-expanded="false">
+      <div class="user-avatar">AD</div>
+      <div class="user-info">
+        <div class="user-name">Admin User</div>
+        <div class="user-role">Super Admin</div>
+      </div>
+      <i class="bi bi-three-dots-vertical ms-auto" style="color:rgba(168,178,204,0.5);font-size:13px;"></i>
+    </div>
+    <ul class="dropdown-menu dropdown-menu-dark" style="margin-left:8px;margin-bottom:4px;">
+      <li><a class="dropdown-item" href="settings.html"><i class="bi bi-person"></i> Profile</a></li>
+      <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear"></i> Preferences</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+    </ul>
+  </div>
+
+</aside>

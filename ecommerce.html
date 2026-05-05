@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Commerce — ASML-ERP</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div id="toastWrap" class="position-fixed bottom-0 end-0 p-3" style="z-index:9999;"></div>
+  <div class="erp-wrapper">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">N</div><span class="logo-text">ASML -  ERP</span>
+      </div>
+      <nav class="sidebar-nav">
+        <ul style="list-style:none;padding:0;margin:0;">
+          <li class="nav-section-label">Main</li>
+          <li class="nav-item"><a href="index.html" class="nav-link" data-tooltip="Dashboard"><i
+                class="bi bi-grid-1x2-fill nav-icon"></i><span class="nav-label">Dashboard</span></a></li>
+          <li class="nav-section-label">Operations</li>
+          <li class="nav-item"><a href="sales.html" class="nav-link" data-tooltip="Sales"><i
+                class="bi bi-graph-up-arrow nav-icon"></i><span class="nav-label">Sales</span></a></li>
+          <li class="nav-item"><a href="purchase.html" class="nav-link" data-tooltip="Purchase"><i
+                class="bi bi-bag-fill nav-icon"></i><span class="nav-label">Purchase</span></a></li>
+          <li class="nav-item"><a href="inventory.html" class="nav-link" data-tooltip="Inventory"><i
+                class="bi bi-boxes nav-icon"></i><span class="nav-label">Inventory</span></a></li>
+          <li class="nav-item"><a href="warehouse.html" class="nav-link" data-tooltip="Warehouse"><i
+                class="bi bi-building nav-icon"></i><span class="nav-label">Warehouse</span></a></li>
+          <li class="nav-item"><a href="ecommerce.html" class="nav-link" data-tooltip="E-Commerce"><i
+                class="bi bi-cart4 nav-icon"></i><span class="nav-label">E-Commerce</span></a></li>
+          <li class="nav-section-label">People &amp; Finance</li>
+          <li class="nav-item"><a href="hrms.html" class="nav-link" data-tooltip="HRMS"><i
+                class="bi bi-people-fill nav-icon"></i><span class="nav-label">HRMS</span></a></li>
+          <li class="nav-item"><a href="crm.html" class="nav-link" data-tooltip="CRM"><i
+                class="bi bi-person-lines-fill nav-icon"></i><span class="nav-label">CRM</span></a></li>
+          <li class="nav-item"><a href="finance.html" class="nav-link" data-tooltip="Finance"><i
+                class="bi bi-wallet2 nav-icon"></i><span class="nav-label">Finance</span></a></li>
+          <li class="nav-section-label">Intelligence</li>
+          <li class="nav-item"><a href="reports.html" class="nav-link" data-tooltip="Reports"><i
+                class="bi bi-bar-chart-fill nav-icon"></i><span class="nav-label">Reports</span></a></li>
+          <li class="nav-section-label">System</li>
+          <li class="nav-item"><a href="settings.html" class="nav-link" data-tooltip="Settings"><i
+                class="bi bi-gear-fill nav-icon"></i><span class="nav-label">Settings</span></a></li>
+          <li class="nav-item"><a href="#" class="nav-link" data-tooltip="Logout"><i
+                class="bi bi-box-arrow-left nav-icon"></i><span class="nav-label">Logout</span></a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="user-avatar">AD</div>
+          <div class="user-info">
+            <div class="user-name">Admin User</div>
+            <div class="user-role">Super Admin</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="topbar">
+        <button class="topbar-toggle" id="sidebarToggle"><i class="bi bi-list" style="font-size:18px;"></i></button>
+        <div class="topbar-breadcrumb"><span class="breadcrumb-trail text-muted-erp">Operations</span><i
+            class="bi bi-chevron-right text-muted-erp" style="font-size:10px;"></i><span
+            class="current-page">E-Commerce</span></div>
+        <div class="topbar-actions">
+          <div class="dropdown"><button class="topbar-btn" data-bs-toggle="dropdown"><i class="bi bi-bell"
+                style="font-size:14px;"></i><span class="notif-badge"></span></button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">12 new orders</a></li>
+            </ul>
+          </div>
+          <div class="dropdown"><button class="topbar-profile" data-bs-toggle="dropdown">
+              <div class="profile-avatar">AD</div><span class="profile-name">Admin</span><i class="bi bi-chevron-down"
+                style="font-size:10px;color:var(--text-muted);"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="settings.html"><i class="bi bi-person"></i> Profile</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">E-Commerce</h1>
+            <p class="page-subtitle">Online orders, customers, and product listings.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <select class="form-select form-select-sm" style="width:auto;">
+              <option>All Channels</option>
+              <option>Website</option>
+              <option>Amazon</option>
+              <option>Shopify</option>
+            </select>
+            <button class="btn-erp btn-primary btn-sm"><i class="bi bi-plus-lg"></i> Add Listing</button>
+          </div>
+        </div>
+
+        <!-- KPIs -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#22C55E;">
+              <div class="kpi-icon" style="background:#DCFCE7;color:#16A34A;"><i class="bi bi-cart-check"></i></div>
+              <div class="kpi-info">
+                <div class="kpi-value">$184,220</div>
+                <div class="kpi-label">Online Revenue</div>
+                <div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> 18.4%</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#3B82F6;">
+              <div class="kpi-icon" style="background:#DBEAFE;color:#2563EB;"><i class="bi bi-bag-check"></i></div>
+              <div class="kpi-info">
+                <div class="kpi-value">1,104</div>
+                <div class="kpi-label">Online Orders</div>
+                <div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> 9.2%</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#F59E0B;">
+              <div class="kpi-icon" style="background:#FEF3C7;color:#D97706;"><i class="bi bi-people"></i></div>
+              <div class="kpi-info">
+                <div class="kpi-value">6,840</div>
+                <div class="kpi-label">Total Customers</div>
+                <div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> 142 new</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="kpi-card" style="--kpi-color:#8B5CF6;">
+              <div class="kpi-icon" style="background:#EDE9FE;color:#7C3AED;"><i class="bi bi-star"></i></div>
+              <div class="kpi-info">
+                <div class="kpi-value">4.7/5</div>
+                <div class="kpi-label">Avg. Rating</div>
+                <div class="kpi-change up"><i class="bi bi-arrow-up-right"></i> 1,284 reviews</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mb-4">
+          <li class="nav-item"><a class="nav-link active" href="#" onclick="showECTab('orders',this);return false;"
+              style="font-family:var(--font-display);font-size:13px;font-weight:600;">Orders</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showECTab('customers',this);return false;"
+              style="font-family:var(--font-display);font-size:13px;font-weight:600;">Customers</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showECTab('products',this);return false;"
+              style="font-family:var(--font-display);font-size:13px;font-weight:600;">Product Listings</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="showECTab('reviews',this);return false;"
+              style="font-family:var(--font-display);font-size:13px;font-weight:600;">Reviews</a></li>
+        </ul>
+
+        <!-- Orders -->
+        <div id="tab-orders">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h3 class="card-title">Online Orders</h3>
+              <div class="d-flex gap-2 flex-wrap">
+                <div class="search-box"><i class="bi bi-search search-icon"></i><input type="text"
+                    class="form-control form-control-sm" placeholder="Order ID, customer..."></div>
+                <select class="form-select form-select-sm" style="width:auto;">
+                  <option>All Channels</option>
+                  <option>Website</option>
+                  <option>Amazon</option>
+                  <option>Shopify</option>
+                </select>
+                <select class="form-select form-select-sm" style="width:auto;">
+                  <option>All Status</option>
+                  <option>Pending</option>
+                  <option>Processing</option>
+                  <option>Shipped</option>
+                  <option>Delivered</option>
+                  <option>Returned</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrapper">
+              <table class="erp-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Channel</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Date</th>
+                    <th>Shipping</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#EC-8812</strong></td>
+                    <td>John Davis</td>
+                    <td><span class="badge-status badge-info">Website</span></td>
+                    <td>2</td>
+                    <td>$298.00</td>
+                    <td>May 3, 2026</td>
+                    <td>FedEx Express</td>
+                    <td><span class="badge-status badge-warning">Processing</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"
+                          onclick="Utils.showToast('Order marked as shipped!','success')"><i
+                            class="bi bi-truck"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>#EC-8811</strong></td>
+                    <td>Sarah Mitchell</td>
+                    <td><span class="badge-status badge-success">Shopify</span></td>
+                    <td>1</td>
+                    <td>$129.00</td>
+                    <td>May 3, 2026</td>
+                    <td>UPS Ground</td>
+                    <td><span class="badge-status badge-success">Delivered</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-pencil"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>#EC-8810</strong></td>
+                    <td>Raj Kumar</td>
+                    <td><span class="badge-status badge-warning">Amazon</span></td>
+                    <td>4</td>
+                    <td>$876.00</td>
+                    <td>May 2, 2026</td>
+                    <td>Amazon Prime</td>
+                    <td><span class="badge-status badge-info">Shipped</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-pencil"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>#EC-8809</strong></td>
+                    <td>Lisa Wang</td>
+                    <td><span class="badge-status badge-info">Website</span></td>
+                    <td>1</td>
+                    <td>$349.00</td>
+                    <td>May 2, 2026</td>
+                    <td>DHL</td>
+                    <td><span class="badge-status badge-danger">Returned</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-arrow-counterclockwise"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>#EC-8808</strong></td>
+                    <td>Mark Oliver</td>
+                    <td><span class="badge-status badge-success">Shopify</span></td>
+                    <td>3</td>
+                    <td>$427.00</td>
+                    <td>May 1, 2026</td>
+                    <td>FedEx Ground</td>
+                    <td><span class="badge-status badge-success">Delivered</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-pencil"></i></button></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row g-3">
+            <div class="col-xl-8">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Revenue by Channel</h3>
+                </div>
+                <div class="card-body">
+                  <div class="chart-container" style="height:220px;"><canvas id="channelChart"></canvas></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4">
+              <div class="card h-100">
+                <div class="card-header">
+                  <h3 class="card-title">Order Status</h3>
+                </div>
+                <div class="card-body">
+                  <div class="chart-container" style="height:220px;"><canvas id="orderStatusChart"></canvas></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customers -->
+        <div id="tab-customers" style="display:none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Customer Database</h3>
+              <div class="d-flex gap-2">
+                <div class="search-box"><i class="bi bi-search search-icon"></i><input type="text"
+                    class="form-control form-control-sm" placeholder="Search customers..."></div>
+              </div>
+            </div>
+            <div class="table-wrapper">
+              <table class="erp-table">
+                <thead>
+                  <tr>
+                    <th>Customer</th>
+                    <th>Email</th>
+                    <th>Location</th>
+                    <th>Orders</th>
+                    <th>Total Spent</th>
+                    <th>Last Order</th>
+                    <th>Segment</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="avatar-sm" style="background:#DBEAFE;color:#2563EB;">JD</div> John Davis
+                      </div>
+                    </td>
+                    <td>john@email.com</td>
+                    <td>New York</td>
+                    <td>24</td>
+                    <td>$4,820</td>
+                    <td>May 3</td>
+                    <td><span class="badge-status badge-success">VIP</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="avatar-sm" style="background:#DCFCE7;color:#16A34A;">SM</div> Sarah Mitchell
+                      </div>
+                    </td>
+                    <td>sarah@email.com</td>
+                    <td>Boston</td>
+                    <td>12</td>
+                    <td>$2,140</td>
+                    <td>May 3</td>
+                    <td><span class="badge-status badge-info">Regular</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="avatar-sm" style="background:#FEF3C7;color:#D97706;">RK</div> Raj Kumar
+                      </div>
+                    </td>
+                    <td>raj@email.com</td>
+                    <td>Chicago</td>
+                    <td>31</td>
+                    <td>$8,200</td>
+                    <td>May 2</td>
+                    <td><span class="badge-status badge-success">VIP</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="avatar-sm" style="background:#FEE2E2;color:#DC2626;">LW</div> Lisa Wang
+                      </div>
+                    </td>
+                    <td>lisa@email.com</td>
+                    <td>Seattle</td>
+                    <td>3</td>
+                    <td>$640</td>
+                    <td>May 2</td>
+                    <td><span class="badge-status badge-neutral">New</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-eye"></i></button></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div id="tab-products" style="display:none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Product Listings</h3><button class="btn-erp btn-primary btn-sm"><i
+                  class="bi bi-plus"></i> Add Listing</button>
+            </div>
+            <div class="table-wrapper">
+              <table class="erp-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>SKU</th>
+                    <th>Price</th>
+                    <th>Views</th>
+                    <th>Sold</th>
+                    <th>Rating</th>
+                    <th>Channels</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Laptop Pro X1</strong></td>
+                    <td>SKU-0101</td>
+                    <td>$1,299</td>
+                    <td>4,820</td>
+                    <td>142</td>
+                    <td>★4.8</td>
+                    <td>Website, Amazon</td>
+                    <td><span class="badge-status badge-success">Active</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-pencil"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Wireless Headset Z3</strong></td>
+                    <td>SKU-0102</td>
+                    <td>$129</td>
+                    <td>9,240</td>
+                    <td>380</td>
+                    <td>★4.6</td>
+                    <td>Website, Shopify, Amazon</td>
+                    <td><span class="badge-status badge-success">Active</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-pencil"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Smart Watch Ultra</strong></td>
+                    <td>SKU-0201</td>
+                    <td>$349</td>
+                    <td>6,100</td>
+                    <td>210</td>
+                    <td>★4.5</td>
+                    <td>Website</td>
+                    <td><span class="badge-status badge-warning">Low Stock</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-pencil"></i></button></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>USB-C Docking Hub</strong></td>
+                    <td>SKU-0103</td>
+                    <td>$79</td>
+                    <td>3,800</td>
+                    <td>88</td>
+                    <td>★4.3</td>
+                    <td>Website, Amazon</td>
+                    <td><span class="badge-status badge-danger">Out of Stock</span></td>
+                    <td>
+                      <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
+                            class="bi bi-pencil"></i></button></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reviews -->
+        <div id="tab-reviews" style="display:none;">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Customer Reviews</h3>
+            </div>
+            <div class="card-body" style="padding:0;">
+              <div class="notif-item">
+                <div
+                  style="width:40px;height:40px;border-radius:50%;background:#DBEAFE;color:#2563EB;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;">
+                  JD</div>
+                <div class="flex-1 ms-2">
+                  <div class="d-flex justify-content-between"><strong style="font-size:13px;">John Davis</strong><span
+                      style="color:#F5A623;font-size:13px;">★★★★★</span></div>
+                  <div style="font-size:12px;margin:4px 0;">Laptop Pro X1 is absolutely amazing. Battery lasts all day
+                    and performance is top-notch.</div>
+                  <div style="font-size:11px;color:var(--text-muted);">May 3, 2026 · Verified Purchase</div>
+                </div>
+              </div>
+              <div class="notif-item">
+                <div
+                  style="width:40px;height:40px;border-radius:50%;background:#DCFCE7;color:#16A34A;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;">
+                  SM</div>
+                <div class="flex-1 ms-2">
+                  <div class="d-flex justify-content-between"><strong style="font-size:13px;">Sarah
+                      Mitchell</strong><span style="color:#F5A623;font-size:13px;">★★★★</span></div>
+                  <div style="font-size:12px;margin:4px 0;">The Wireless Headset sound quality is great, comfort could
+                    be improved for long sessions.</div>
+                  <div style="font-size:11px;color:var(--text-muted);">May 2, 2026 · Verified Purchase</div>
+                </div>
+              </div>
+              <div class="notif-item">
+                <div
+                  style="width:40px;height:40px;border-radius:50%;background:#FEF3C7;color:#D97706;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;">
+                  RK</div>
+                <div class="flex-1 ms-2">
+                  <div class="d-flex justify-content-between"><strong style="font-size:13px;">Raj Kumar</strong><span
+                      style="color:#F5A623;font-size:13px;">★★★★★</span></div>
+                  <div style="font-size:12px;margin:4px 0;">Fast delivery, well packaged, and the product exceeded
+                    expectations. Will buy again!</div>
+                  <div style="font-size:11px;color:var(--text-muted);">May 1, 2026 · Verified Purchase</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="page-footer"><span>© 2026 ASML -  ERP</span><span>E-Commerce Module v3.2</span></footer>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/global.js"></script>
+  <script>
+    function showECTab(tab, el) {
+      ['orders', 'customers', 'products', 'reviews'].forEach(t => { document.getElementById('tab-' + t).style.display = t === tab ? '' : 'none'; });
+      document.querySelectorAll('.nav-tabs .nav-link').forEach(a => a.classList.remove('active'));
+      el.classList.add('active');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      ChartHelper.barChart(document.getElementById('channelChart').getContext('2d'),
+        ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+        [
+          { label: 'Website', data: [42000, 48000, 44000, 52000, 58000], backgroundColor: '#F5A623' },
+          { label: 'Shopify', data: [28000, 32000, 30000, 38000, 42000], backgroundColor: '#3B82F6' },
+          { label: 'Amazon', data: [18000, 22000, 20000, 26000, 30000], backgroundColor: '#22C55E' }
+        ]
+      );
+      ChartHelper.doughnutChart(document.getElementById('orderStatusChart').getContext('2d'),
+        ['Delivered', 'Processing', 'Shipped', 'Returned', 'Pending'],
+        [58, 18, 14, 6, 4],
+        ['#22C55E', '#F5A623', '#3B82F6', '#EF4444', '#9BA5BF']
+      );
+    });
+  </script>
+</body>
+
+</html>
