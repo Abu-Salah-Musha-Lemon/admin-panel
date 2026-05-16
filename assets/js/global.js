@@ -231,7 +231,7 @@ const PageTracker = {
   },
   init() {
     const page = window.location.pathname.split('/').pop() || 'index.html';
-    document.title = (this.titles[page] || 'Page') + ' — NexaERP';
+    document.title = (this.titles[page] || 'Page') + ' — ASML-ERP';
   }
 };
 
