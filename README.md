@@ -108,5 +108,5 @@ For known limitations and the difference between *static checks* and *real-brows
 ## Credits
 
 Original project: **ASML-ERP Dashboard**\
-Author **Abu Salah Musha Lemon**. 
+Author **Abu Salah Musha Lemon**.\
 This package preserves the original page structure and expands the demo behavior and documentation. Any original licensing terms should be verified before redistribution.
