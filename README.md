@@ -1,9 +1,12 @@
 # ASML-ERP — Admin Dashboard (Frontend Demo)
 
-A responsive, multi-module Enterprise Resource Planning (ERP) **frontend** built with HTML, CSS, and vanilla JavaScript. Version **3.3 (reviewed)** includes working **browser-only** Sales and Inventory demo workflows, navigation improvements, clearer demo indicators, keyboard accessibility, and professional UX refinements.
+A responsive, multi-module Enterprise Resource Planning (ERP) **frontend** built with HTML, CSS, and vanilla JavaScript. Version **v1.0.2 (reviewed)** includes working **browser-only** Sales and Inventory demo workflows, navigation improvements, clearer demo indicators, keyboard accessibility, and professional UX refinements.
 
 > **Important:** This is **not** a production ERP, a secure login implementation, or a connected database application. Example records, reports, notification counts, and KPIs are sample data. Browser-local demo changes are not shared with other users or devices.
+## 🌐 Live Demo
+👉 [Click here to view the project](https://abu-salah-musha-lemon.github.io/admin-panel/)
 
+---
 ## Quick start
 
 1. Download/unzip the complete project. Keep `assets/` beside the HTML pages.
