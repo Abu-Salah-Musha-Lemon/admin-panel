@@ -105,6 +105,8 @@ Requires Python 3, BeautifulSoup4 and Node.js (for checks only). No npm install 
 
 For known limitations and the difference between *static checks* and *real-browser checks*, see `TEST_REPORT.md`. For backend integration and maintainability, see `DEVELOPER_GUIDE.md`.
 
-### Attribution
+## Credits
 
-Original project: **ASML-ERP Dashboard**, author **Abu Salah Musha Lemon**. This package preserves the original page structure and expands the demo behavior and documentation. Any original licensing terms should be verified before redistribution.
+Original project: **ASML-ERP Dashboard**\
+Author **Abu Salah Musha Lemon**. 
+This package preserves the original page structure and expands the demo behavior and documentation. Any original licensing terms should be verified before redistribution.
