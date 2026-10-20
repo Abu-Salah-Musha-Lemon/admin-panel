@@ -3,7 +3,7 @@
 A modern, fully responsive **ERP dashboard UI** built with pure HTML, CSS, and JavaScript.  
 Designed for scalability and ready for backend integration with any framework.
 
-**Version:** 3.2.1  
+**Version:** 1.0.1  
 **Build:** 20260503  
 
 ---
