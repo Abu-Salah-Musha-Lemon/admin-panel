@@ -1,231 +1,107 @@
-## 🚀 ASML-ERP Dashboard — Frontend System
+# ASML-ERP — Admin Dashboard (Frontend Demo)
 
-A modern, fully responsive **ERP dashboard UI** built with pure HTML, CSS, and JavaScript.  
-Designed for scalability and ready for backend integration with any framework.
+A responsive, multi-module Enterprise Resource Planning (ERP) **frontend** built with HTML, CSS, and vanilla JavaScript. Version **3.3 (reviewed)** includes working **browser-only** Sales and Inventory demo workflows, navigation improvements, clearer demo indicators, keyboard accessibility, and professional UX refinements.
 
-**Version:** 3.2.1  
-**Build:** 20260503  
+> **Important:** This is **not** a production ERP, a secure login implementation, or a connected database application. Example records, reports, notification counts, and KPIs are sample data. Browser-local demo changes are not shared with other users or devices.
 
----
+## Quick start
 
-## 📸 Preview
+1. Download/unzip the complete project. Keep `assets/` beside the HTML pages.
+2. On Windows, double-click `START_ADMIN_PANEL.bat` (requires Python 3), or use the manual method below.
+3. Install Python 3 if not already installed.
+4. In the project root run:
+   ```bash
+   python -m http.server 8000
+   ```
+5. Open http://localhost:8000/login.html in a browser with an internet connection (CDN dependencies are needed for Bootstrap components, icons and charts).
+6. Use the following **demo credentials**:
 
-![Dashboard Preview](assets/preview.png)
+   - **Email:** `admin@asml-erp.com`
+   - **Password:** `admin123`
 
----
+You can also load `index.html` directly, but the recommended option is a local HTTP server.
 
-## 🌐 Live Demo
+**Security:** Credentials are compared in browser-side JavaScript. There is no server-issued session or access control. Do **not** enter real business data or deploy this demo as a live authentication system.
 
-👉 [Click here to view the project](https://abu-salah-musha-lemon.github.io/admin-panel/)
+## Folder map
 
----
-
-## 📁 Project Structure
-
+```text
+admin-panel-main/
+├── login.html              # Demo login
+├── index.html              # Executive dashboard
+├── sales.html              # Sales (functional browser-only CRUD)
+├── inventory.html          # Inventory (functional browser-only CRUD)
+├── purchase.html           # Purchase orders (sample UI)
+├── warehouse.html          # Warehouse (sample UI)
+├── ecommerce.html          # E-commerce (sample UI)
+├── hrms.html               # HR (sample UI)
+├── crm.html                # CRM (sample UI)
+├── finance.html            # Finance (sample UI)
+├── reports.html            # Analytics dashboard / printable reports
+├── settings.html           # Settings & preferences
+├── 404.html                # Error page
+├── START_ADMIN_PANEL.bat   # One-click local launch on Windows (Python 3)
+├── assets/
+│   ├── css/
+│   │   ├── style.css       # Existing design system
+│   │   └── polish.css      # Responsive/UI/accessibility refinements
+│   └── js/
+│       ├── app.js          # Sidebar, chart helpers, toasts, safe local data helpers
+│       ├── global.js       # Search, theme and shortcuts
+│       ├── ux.js           # Shared UX, accessible labels, exports and preferences
+│       ├── sales-demo.js   # Sales CRUD, validation, filters and CSV
+│       └── inventory-demo.js # Inventory CRUD, validation, filters and CSV
+├── partials/               # Reference-only reusable header/footer templates
+├── tests/
+│   ├── static_audit.py     # HTML/reference/syntax consistency checks
+│   └── logic_smoke.cjs     # Sales & inventory data-filter smoke tests
+├── DEVELOPER_GUIDE.md      # Code map, extension and backend guidance
+├── TEST_REPORT.md          # Actual checks and limitations
+└── CHANGELOG.md            # Reviewed changes
 ```
-erp-dashboard/
-├── index.html          ← Executive Dashboard (KPIs, charts, activity)
-├── login.html          ← Login page with demo credentials + SSO buttons
-├── sales.html          ← Sales orders, filters, rep performance
-├── purchase.html       ← Purchase orders, vendor management
-├── hrms.html           ← Employees, attendance, payroll, leaves
-├── crm.html            ← Leads, deal pipeline (Kanban), contacts
-├── inventory.html      ← Products, stock levels, supplier list
-├── warehouse.html      ← Warehouse cards, stock transfers, capacity
-├── ecommerce.html      ← Online orders, customers, product listings, reviews
-├── finance.html        ← Invoices, payments, expenses, P&L
-├── reports.html        ← Multi-module charts, saved/scheduled reports
-├── settings.html       ← Profile, security, appearance, users, billing, audit
-├── 404.html            ← Error page
-│
-├── partials/
-│   ├── sidebar.html    ← Sidebar navigation
-│   ├── topbar.html     ← Topbar (search, dark mode, profile)
-│   └── footer.html     ← Footer
-│
-└── assets/
-├── css/
-│   └── style.css   ← Design system (variables, components)
-└── js/
-├── app.js      ← Core logic, charts, navigation
-└── global.js   ← Search, dark mode, shortcuts
 
-````
+The files inside `partials/` are **reference templates**, not automatically injected at runtime. Existing pages contain their own sidebar and topbar markup.
 
----
+## Working in the demo
 
-## 🛠 Tech Stack
+| Feature | Status |
+| --- | --- |
+| Dashboard / KPI displays | Sample values, view only |
+| Search Ctrl+K / navigation | Working in-page search/navigation |
+| Sidebar, dark mode, appearance prefs | Working browser preferences |
+| Sales | Create, view, edit, delete, filter, paginate, CSV export via `localStorage` |
+| Inventory | Create, view, edit, delete, filter, paginate, CSV export via `localStorage` |
+| Other modules | Mostly sample pages, not backed by persistent records |
+| Reports | Sample charts; period view for time-series; PDF through browser print dialog |
+| Login | Demo-only client-side check; **not authentication** |
+| SSO, real permissions, email, payment, billing | Not implemented |
 
-- HTML5  
-- CSS3 (Custom Design System + Variables)  
-- JavaScript (Vanilla)  
-- Bootstrap 5.3  
-- Bootstrap Icons  
-- Chart.js  
+**Reset demo records:** Clear this site's browser storage (Local Storage keys `erp_demo_sales_v2` and `erp_demo_inventory_v2`), then reload the page. Changes are only stored in the current browser.
 
----
+**Keyboard shortcuts:** `Ctrl/Cmd + K` search, `Esc` close search, `G` then `D/S/I/F/R` jump to Dashboard/Sales/Inventory/Finance/Reports. Navigation shortcuts do not run while typing in a field.
 
-## 🚀 Getting Started
+## CDN requirements
+
+The project currently references third-party CDN resources:
+
+- Bootstrap 5.3.3 (CSS and JS bundle)
+- Bootstrap Icons 1.11.3
+- Chart.js 4.4.3
+- Google Fonts (Syne and DM Sans)
+
+Internet access is required to load all visual components. If Chart.js is unavailable, charts display a fallback notice instead of breaking page initialization. Offline deployment should download/vendor these dependencies separately and update HTML references (licenses must be respected).
+
+## Run available tests
 
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/erp-dashboard.git
-
-# Open project folder
-cd erp-dashboard
-
-# Open in browser
-open login.html
-````
-
-Or simply open any `.html` file directly — no build step required.
-
----
-
-## 🔐 Demo Credentials
-
-* **Email:** [admin@ASML-ERP.com](mailto:admin@ASML-ERP.com)
-* **Password:** admin123
-
----
-
-## ⌨️ Keyboard Shortcuts
-
-| Shortcut | Action              |
-| -------- | ------------------- |
-| Ctrl + K | Open global search  |
-| ESC      | Close modals/search |
-| G → D    | Go to Dashboard     |
-| G → S    | Go to Sales         |
-| G → I    | Go to Inventory     |
-| G → F    | Go to Finance       |
-| G → R    | Go to Reports       |
-
----
-
-## 🎨 Design System
-
-* **Heading Font:** Syne
-* **Body Font:** DM Sans
-* **Primary Color:** `#F5A623` (Amber)
-* **Sidebar:** `#0D1321` (Deep Navy)
-* **Background:** `#F0F2F7`
-
-Easily customizable via CSS variables in:
-
-```
-assets/css/style.css
+python tests/static_audit.py
+node tests/logic_smoke.cjs
 ```
 
----
+Requires Python 3, BeautifulSoup4 and Node.js (for checks only). No npm install or build step is required to run the site itself.
 
-## 🌙 Dark Mode
+For known limitations and the difference between *static checks* and *real-browser checks*, see `TEST_REPORT.md`. For backend integration and maintainability, see `DEVELOPER_GUIDE.md`.
 
-* Toggle via topbar or settings
-* Automatically saved using `localStorage`
+### Attribution
 
----
-
-## 📦 CDN Dependencies
-
-Bootstrap 5.3.3
-Bootstrap Icons 1.11.3
-Chart.js 4.4.3
-Google Fonts (Syne + DM Sans)
-
-
-No npm or build tools required.
-
----
-
-## 🔌 Backend Integration Guide
-
-This frontend is fully ready for backend integration:
-
-| Feature | Integration Guide                      |
-| ------- | -------------------------------------- |
-| Tables  | Replace static data with API (`fetch`) |
-| Forms   | Add `action` + `method`                |
-| Charts  | Feed dynamic API data                  |
-| Auth    | Replace `doLogin()` with JWT/session   |
-| Modals  | Connect buttons to API endpoints       |
-
-### ✅ Supported Backends
-
-* Laravel
-* Django
-* Node.js / Express
-* FastAPI
-* Ruby on Rails
-
----
-
-## 📱 Responsive Design
-
-| Screen Size | Behavior               |
-| ----------- | ---------------------- |
-| > 992px     | Sidebar expanded       |
-| 768–992px   | Sidebar collapsible    |
-| < 768px     | Mobile overlay sidebar |
-
----
-
-## ✅ Features
-
-* 13 fully designed pages
-* Responsive layout (mobile-first)
-* Collapsible sidebar with persistence
-* Global search (Ctrl + K)
-* Dark mode support
-* Keyboard navigation shortcuts
-* Interactive charts (Chart.js)
-* Toast notifications
-* CRUD-ready tables & modals
-* CRM Kanban board
-* HRMS, Finance, Inventory modules
-* E-commerce dashboard
-* Reports with analytics
-* Login system UI + SSO buttons
-* 404 error page
-
----
-
-## 🚧 Future Improvements
-
-* Backend integration (API + database)
-* Authentication system (JWT/session)
-* Role-based access control
-* Real-time data updates
-* Advanced analytics
-
----
-
-## 👤 Author
-
-**Abu Salah Musha Lemon**
-
-* GitHub: [https://github.com/abu-salah-musha-lemon](https://github.com/abu-salah-musha-lemon)
-* Project: ASML-ERP Dashboard
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
-## ⭐ Support
-
-If you like this project, consider giving it a ⭐ on GitHub!
-
----
-
-## 🔥 Final note
-This version is:
-- Clean  
-- Professional  
-- Recruiter-friendly  
-- Portfolio-ready  
-
----
+Original project: **ASML-ERP Dashboard**, author **Abu Salah Musha Lemon**. This package preserves the original page structure and expands the demo behavior and documentation. Any original licensing terms should be verified before redistribution.

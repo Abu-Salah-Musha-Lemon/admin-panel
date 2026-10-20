@@ -28,6 +28,7 @@ const SearchModal = {
 
   init() {
     this.inject();
+    this._lastFocused = null;
     this.bindKeys();
     document.querySelectorAll('[data-action="open-search"]').forEach(btn => {
       btn.addEventListener('click', () => this.open());
@@ -37,7 +38,7 @@ const SearchModal = {
   inject() {
     const html = `
     <div id="globalSearch" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(13,19,33,0.6);backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding-top:80px;" role="dialog" aria-modal="true" aria-label="Global search">
-      <div style="background:#fff;border-radius:16px;width:100%;max-width:580px;box-shadow:0 24px 80px rgba(13,19,33,0.3);overflow:hidden;animation:fadeInUp 0.2s ease;">
+      <div style="background:var(--bg-card);border-radius:16px;width:calc(100% - 32px);max-width:580px;box-shadow:0 24px 80px rgba(13,19,33,0.3);overflow:hidden;animation:fadeInUp 0.2s ease;">
         <!-- Search input -->
         <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border);">
           <i class="bi bi-search" style="font-size:18px;color:var(--text-muted);flex-shrink:0;"></i>
@@ -57,6 +58,14 @@ const SearchModal = {
       </div>
     </div>`;
     document.body.insertAdjacentHTML('beforeend', html);
+    document.getElementById('globalSearch').addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      const anchors = Array.from(document.querySelectorAll('#globalSearch .search-result-item'));
+      const focusables = [document.getElementById('globalSearchInput'), ...anchors];
+      const first = focusables[0], last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
     document.getElementById('globalSearch').addEventListener('click', (e) => {
       if (e.target.id === 'globalSearch') this.close();
     });
@@ -64,15 +73,21 @@ const SearchModal = {
 
   open() {
     const modal = document.getElementById('globalSearch');
+    this._lastFocused = document.activeElement;
     modal.style.display = 'flex';
+    document.body.classList.add('search-open');
     document.getElementById('globalSearchInput').value = '';
     this.search('');
     setTimeout(() => document.getElementById('globalSearchInput').focus(), 50);
   },
 
   close() {
-    document.getElementById('globalSearch').style.display = 'none';
+    const modal = document.getElementById('globalSearch');
+    if (!modal || modal.style.display === 'none') return;
+    modal.style.display = 'none';
+    document.body.classList.remove('search-open');
     this._selected = -1;
+    this._lastFocused?.focus?.();
   },
 
   _selected: -1,
@@ -88,6 +103,7 @@ const SearchModal = {
         d.label.toLowerCase().includes(lq) || d.cat.toLowerCase().includes(lq)
       );
     }
+    if (this._filtered.length) this._selected = 0;
     this.render();
   },
 
@@ -156,7 +172,9 @@ const SearchModal = {
         this.close();
       }
       // G + D = go to dashboard
-      if (!e.ctrlKey && !e.metaKey && !e.altKey && e.key === 'g') {
+      const typing = e.target?.matches?.('input, textarea, select, [contenteditable], [contenteditable="true"]');
+      if (typing || e.ctrlKey || e.metaKey || e.altKey || e.isComposing) { this._gKey = false; return; }
+      if (e.key === 'g') {
         this._gKey = true;
         setTimeout(() => this._gKey = false, 1000);
       }
@@ -166,6 +184,7 @@ const SearchModal = {
         if (e.key === 'i') { e.preventDefault(); window.location.href = 'inventory.html'; }
         if (e.key === 'f') { e.preventDefault(); window.location.href = 'finance.html'; }
         if (e.key === 'r') { e.preventDefault(); window.location.href = 'reports.html'; }
+        if ('dsifr'.includes(e.key)) this._gKey = false;
       }
     });
   },
@@ -184,31 +203,41 @@ const ShortcutHint = {
 /* ---- DARK MODE -------------------------------------------- */
 const DarkMode = {
   init() {
-    const saved = localStorage.getItem('erp_dark_mode');
-    if (saved === 'true') this.enable(false);
+    const preference = ERPStore.get('erp_theme_preference', 'manual');
+    const saved = ERPStore.get('erp_dark_mode', false);
+    if (preference === 'system') {
+      const dark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+      if (dark) this.enable(false); else this.disable(false);
+      window.matchMedia?.('(prefers-color-scheme: dark)')?.addEventListener?.('change', event => {
+        if (ERPStore.get('erp_theme_preference', 'manual') === 'system') {
+          event.matches ? this.enable(false) : this.disable(false);
+        }
+      });
+    } else if (saved === true) this.enable(false);
     this.bindToggle();
   },
 
   enable(save = true) {
     document.body.classList.add('dark-mode');
-    if (save) localStorage.setItem('erp_dark_mode', 'true');
+    if (save) ERPStore.set('erp_dark_mode', true);
     document.querySelectorAll('[data-dark-icon]').forEach(i => i.className = 'bi bi-sun-fill');
   },
 
   disable(save = true) {
     document.body.classList.remove('dark-mode');
-    if (save) localStorage.setItem('erp_dark_mode', 'false');
+    if (save) ERPStore.set('erp_dark_mode', false);
     document.querySelectorAll('[data-dark-icon]').forEach(i => i.className = 'bi bi-moon-fill');
   },
 
   toggle() {
+    ERPStore.set('erp_theme_preference', 'manual');
     if (document.body.classList.contains('dark-mode')) this.disable();
     else this.enable();
   },
 
   bindToggle() {
     document.querySelectorAll('[data-action="toggle-dark"]').forEach(btn => {
-      btn.addEventListener('click', () => this.toggle());
+      btn.addEventListener('click', e => { e.preventDefault(); this.toggle(); });
     });
   }
 };
@@ -264,8 +293,10 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.setAttribute('data-action', 'toggle-dark');
     btn.setAttribute('title', 'Toggle Dark Mode');
     btn.innerHTML = '<i class="bi bi-moon-fill" data-dark-icon style="font-size:14px;"></i>';
+    btn.setAttribute('aria-label', 'Toggle dark mode');
     actions.insertBefore(btn, actions.firstChild);
     btn.addEventListener('click', () => DarkMode.toggle());
+    if (document.body.classList.contains('dark-mode')) btn.querySelector('i').className = 'bi bi-sun-fill';
   }
 
   // Ctrl+K shortcut hint
@@ -317,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
     body.dark-mode .deal-card { background: var(--bg-card); border-color: var(--border); }
 
     /* Smooth dark mode transition */
-    body, body * { transition: background-color 0.25s ease, border-color 0.25s ease, color 0.1s ease; }
+    body, .card, .kpi-card, .topbar, .dropdown-menu { transition: background-color 0.25s ease, border-color 0.25s ease; }
     .sidebar, .sidebar * { transition: none !important; }
     .progress-fill { transition: width 0.8s ease !important; }
   `;

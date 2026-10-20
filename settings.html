@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/polish.css" />
 </head>
 
 <body>
@@ -50,8 +51,8 @@
           <li class="nav-section-label">System</li>
           <li class="nav-item"><a href="settings.html" class="nav-link" data-tooltip="Settings"><i
                 class="bi bi-gear-fill nav-icon"></i><span class="nav-label">Settings</span></a></li>
-          <li class="nav-item"><a href="#" class="nav-link" data-tooltip="Logout"><i
-                class="bi bi-box-arrow-left nav-icon"></i><span class="nav-label">Logout</span></a></li>
+          <li class="nav-item"><a href="login.html" class="nav-link" data-tooltip="Exit demo"><i
+                class="bi bi-box-arrow-left nav-icon"></i><span class="nav-label">Exit demo</span></a></li>
         </ul>
       </nav>
       <div class="sidebar-footer">
@@ -68,18 +69,18 @@
     <div class="main-content">
       <!-- TOPBAR -->
       <header class="topbar">
-        <button class="topbar-toggle" id="sidebarToggle"><i class="bi bi-list" style="font-size:18px;"></i></button>
+        <button class="topbar-toggle" id="sidebarToggle" aria-label="Toggle navigation"><i class="bi bi-list" style="font-size:18px;"></i></button>
         <div class="topbar-breadcrumb"><span class="breadcrumb-trail text-muted-erp">System</span><i
             class="bi bi-chevron-right text-muted-erp" style="font-size:10px;"></i><span
             class="current-page">Settings</span></div>
-        <div class="topbar-actions">
-          <div class="dropdown"><button class="topbar-btn" data-bs-toggle="dropdown"><i class="bi bi-bell"
+        <div class="topbar-actions"><span class="demo-pill" title="Sample data — frontend demonstration">DEMO</span>
+          <div class="dropdown"><button class="topbar-btn" data-bs-toggle="dropdown" aria-label="Notifications"><i class="bi bi-bell"
                 style="font-size:14px;"></i><span class="notif-badge"></span></button>
             <ul class="dropdown-menu dropdown-menu-end">
               <li><a class="dropdown-item" href="#">No new notifications</a></li>
             </ul>
           </div>
-          <div class="dropdown"><button class="topbar-profile" data-bs-toggle="dropdown">
+          <div class="dropdown"><button class="topbar-profile" data-bs-toggle="dropdown" aria-label="Account menu">
               <div class="profile-avatar">AD</div><span class="profile-name">Admin</span><i class="bi bi-chevron-down"
                 style="font-size:10px;color:var(--text-muted);"></i>
             </button>
@@ -196,7 +197,7 @@
                 <div class="modal-footer"
                   style="padding:16px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px;">
                   <button class="btn-erp btn-outline">Discard</button>
-                  <button class="btn-erp btn-primary" onclick="Utils.showToast('Profile updated successfully!')"><i
+                  <button class="btn-erp btn-primary" onclick="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')"><i
                       class="bi bi-check-lg"></i> Save Changes</button>
                 </div>
               </div>
@@ -227,7 +228,7 @@
                   </div>
                   <div class="mt-3 d-flex justify-content-end">
                     <button class="btn-erp btn-primary"
-                      onclick="Utils.showToast('Password updated successfully!')">Update Password</button>
+                      onclick="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')">Update Password</button>
                   </div>
                 </div>
               </div>
@@ -242,7 +243,7 @@
                       <div style="font-size:12px;color:var(--text-muted);">Use Google Authenticator or Authy</div>
                     </div>
                     <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
-                        onchange="Utils.showToast(this.checked?'2FA enabled!':'2FA disabled','info')"></div>
+                        onchange="this.checked=!this.checked;Utils.showToast('Two-factor authentication requires a secure backend.','info')"></div>
                   </div>
                   <div class="d-flex align-items-center justify-content-between">
                     <div>
@@ -250,7 +251,7 @@
                       <div style="font-size:12px;color:var(--text-muted);">Receive OTP via SMS</div>
                     </div>
                     <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox"
-                        onchange="Utils.showToast(this.checked?'SMS 2FA enabled':'SMS 2FA disabled','info')"></div>
+                        onchange="this.checked=!this.checked;Utils.showToast('SMS authentication requires a secure backend.','info')"></div>
                   </div>
                 </div>
               </div>
@@ -283,7 +284,7 @@
                         <td>New York, US</td>
                         <td>2 hours ago</td>
                         <td><button class="btn-erp btn-danger-ghost btn-sm"
-                            onclick="Utils.showToast('Session revoked','danger')">Revoke</button></td>
+                            onclick="Utils.showToast('Session management requires real authentication.','info')">Revoke</button></td>
                       </tr>
                       <tr>
                         <td><i class="bi bi-display"></i> Windows PC</td>
@@ -291,13 +292,13 @@
                         <td>Boston, US</td>
                         <td>Yesterday</td>
                         <td><button class="btn-erp btn-danger-ghost btn-sm"
-                            onclick="Utils.showToast('Session revoked','danger')">Revoke</button></td>
+                            onclick="Utils.showToast('Session management requires real authentication.','info')">Revoke</button></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
                 <div style="padding:14px 20px;"><button class="btn-erp btn-danger-ghost btn-sm"
-                    onclick="Utils.showToast('All other sessions revoked','danger')"><i class="bi bi-shield-x"></i>
+                    onclick="Utils.showToast('Session management requires real authentication.','info')"><i class="bi bi-shield-x"></i>
                     Revoke All Other Sessions</button></div>
               </div>
             </div>
@@ -363,13 +364,13 @@
                   </div>
                   <div class="row g-3">
                     <div class="col-md-6"><label class="form-label">Font Size</label><select class="form-select"
-                        onchange="Utils.showToast('Font size updated!','info')">
+                        onchange="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')">
                         <option>Small (12px)</option>
                         <option selected>Medium (14px)</option>
                         <option>Large (16px)</option>
                       </select></div>
                     <div class="col-md-6"><label class="form-label">Sidebar Default</label><select class="form-select"
-                        onchange="Utils.showToast('Sidebar preference saved!','info')">
+                        onchange="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')">
                         <option selected>Expanded</option>
                         <option>Collapsed</option>
                       </select></div>
@@ -382,7 +383,7 @@
                           </div>
                         </div>
                         <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox"
-                            onchange="Utils.showToast('Table density updated!','info')"></div>
+                            onchange="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')"></div>
                       </div>
                       <div class="d-flex align-items-center justify-content-between py-2"
                         style="border-top:1px solid var(--border);">
@@ -392,7 +393,7 @@
                           </div>
                         </div>
                         <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked
-                            onchange="Utils.showToast('Animation preference saved!','info')"></div>
+                            onchange="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')"></div>
                       </div>
                     </div>
                   </div>
@@ -417,7 +418,7 @@
                   <div id="alertList"></div>
                   <div class="mt-3 d-flex justify-content-end">
                     <button class="btn-erp btn-primary"
-                      onclick="Utils.showToast('Notification preferences saved!')">Save Preferences</button>
+                      onclick="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')">Save Preferences</button>
                   </div>
                 </div>
               </div>
@@ -462,7 +463,7 @@
                       </select></div>
                   </div>
                   <div class="mt-3 d-flex justify-content-end">
-                    <button class="btn-erp btn-primary" onclick="Utils.showToast('Company info saved!')">Save
+                    <button class="btn-erp btn-primary" onclick="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')">Save
                       Changes</button>
                   </div>
                 </div>
@@ -474,7 +475,7 @@
               <div class="card mb-4">
                 <div class="card-header">
                   <h3 class="card-title">Users & Access Control</h3>
-                  <button class="btn-erp btn-primary btn-sm" onclick="Utils.showToast('Invite sent!','success')"><i
+                  <button class="btn-erp btn-primary btn-sm" onclick="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')"><i
                       class="bi bi-person-plus"></i> Invite User</button>
                 </div>
                 <div class="table-wrapper">
@@ -519,7 +520,7 @@
                         <td>
                           <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
                                 class="bi bi-pencil"></i></button><button class="btn-erp btn-danger-ghost btn-sm"
-                              onclick="Utils.showToast('User deactivated','warning')"><i
+                              onclick="Utils.showToast('User management requires role-based backend access.','info')"><i
                                 class="bi bi-person-x"></i></button></div>
                         </td>
                       </tr>
@@ -536,7 +537,7 @@
                         <td>
                           <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
                                 class="bi bi-pencil"></i></button><button class="btn-erp btn-danger-ghost btn-sm"
-                              onclick="Utils.showToast('User deactivated','warning')"><i
+                              onclick="Utils.showToast('User management requires role-based backend access.','info')"><i
                                 class="bi bi-person-x"></i></button></div>
                         </td>
                       </tr>
@@ -553,7 +554,7 @@
                         <td>
                           <div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i
                                 class="bi bi-pencil"></i></button><button class="btn-erp btn-danger-ghost btn-sm"
-                              onclick="Utils.showToast('User removed','danger')"><i class="bi bi-trash"></i></button>
+                              onclick="Utils.showToast('User management requires role-based backend access.','info')"><i class="bi bi-trash"></i></button>
                           </div>
                         </td>
                       </tr>
@@ -564,7 +565,7 @@
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">Roles & Permissions</h3><button class="btn-erp btn-outline btn-sm"
-                    onclick="Utils.showToast('New role created!','success')"><i class="bi bi-plus"></i> New
+                    onclick="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')"><i class="bi bi-plus"></i> New
                     Role</button>
                 </div>
                 <div class="table-wrapper">
@@ -678,7 +679,7 @@
                         <td>$299.00</td>
                         <td><span class="badge-status badge-success">Paid</span></td>
                         <td><button class="btn-erp btn-ghost btn-sm"
-                            onclick="Utils.showToast('Downloading invoice...','info')"><i
+                            onclick="Utils.showToast('Invoice downloads require billing integration.','info')"><i
                               class="bi bi-download"></i></button></td>
                       </tr>
                       <tr>
@@ -687,7 +688,7 @@
                         <td>$299.00</td>
                         <td><span class="badge-status badge-success">Paid</span></td>
                         <td><button class="btn-erp btn-ghost btn-sm"
-                            onclick="Utils.showToast('Downloading invoice...','info')"><i
+                            onclick="Utils.showToast('Invoice downloads require billing integration.','info')"><i
                               class="bi bi-download"></i></button></td>
                       </tr>
                       <tr>
@@ -696,7 +697,7 @@
                         <td>$299.00</td>
                         <td><span class="badge-status badge-success">Paid</span></td>
                         <td><button class="btn-erp btn-ghost btn-sm"
-                            onclick="Utils.showToast('Downloading invoice...','info')"><i
+                            onclick="Utils.showToast('Invoice downloads require billing integration.','info')"><i
                               class="bi bi-download"></i></button></td>
                       </tr>
                     </tbody>
@@ -714,7 +715,7 @@
                     <div class="search-box"><i class="bi bi-search search-icon"></i><input type="text"
                         class="form-control form-control-sm" placeholder="Filter events..."></div>
                     <button class="btn-erp btn-outline btn-sm"
-                      onclick="Utils.showToast('Audit log exported!','success')"><i class="bi bi-download"></i>
+                      onclick="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')"><i class="bi bi-download"></i>
                       Export</button>
                   </div>
                 </div>
@@ -815,7 +816,7 @@
                   <div class="mb-3">
                     <label class="form-label">Automatic Backup Schedule</label>
                     <select class="form-select" style="max-width:300px;"
-                      onchange="Utils.showToast('Backup schedule updated!','success')">
+                      onchange="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')">
                       <option>Daily at 2:00 AM</option>
                       <option>Every 12 hours</option>
                       <option>Weekly</option>
@@ -824,11 +825,11 @@
                   </div>
                   <div class="d-flex gap-2 flex-wrap">
                     <button class="btn-erp btn-primary"
-                      onclick="Utils.showToast('Backup started! This may take a few minutes.','info')"><i
+                      onclick="Utils.showToast('Backup requires a connected server and database.','info')"><i
                         class="bi bi-cloud-upload"></i> Backup Now</button>
-                    <button class="btn-erp btn-outline" onclick="Utils.showToast('Preparing data export...','info')"><i
+                    <button class="btn-erp btn-outline" onclick="Utils.showToast('Data export requires a connected database.','info')"><i
                         class="bi bi-download"></i> Export All Data (CSV)</button>
-                    <button class="btn-erp btn-outline" onclick="Utils.showToast('Preparing JSON export...','info')"><i
+                    <button class="btn-erp btn-outline" onclick="Utils.showToast('Data export requires a connected database.','info')"><i
                         class="bi bi-filetype-json"></i> Export JSON</button>
                   </div>
                 </div>
@@ -872,6 +873,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/app.js"></script>
   <script src="assets/js/global.js"></script>
+  <script src="assets/js/ux.js"></script>
   <script>
     function showSetting(name, el) {
       document.querySelectorAll('[id^="setting-"]').forEach(s => s.style.display = 'none');
@@ -903,9 +905,10 @@
 
     function setAccent(color, el) {
       document.documentElement.style.setProperty('--accent', color);
+      ERPStore.set('erp_accent', color);
       document.querySelectorAll('[onclick^="setAccent"]').forEach(d => d.style.boxShadow = 'none');
       el.style.boxShadow = `0 0 0 2px white, 0 0 0 4px ${color}`;
-      Utils.showToast('Accent color updated!');
+      Utils.showToast('Demo preview: this action needs a connected backend.', 'info');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -914,14 +917,14 @@
       document.getElementById('notifList').innerHTML = notifs.map(n => `
     <div class="d-flex align-items-center justify-content-between py-2" style="border-bottom:1px solid var(--border);">
       <span style="font-size:13px;">${n}</span>
-      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked onchange="Utils.showToast('Preference saved!','info')"></div>
+      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked onchange="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')"></div>
     </div>`).join('');
 
       const alerts = ['Dashboard KPI alerts', 'Inventory stock warnings', 'CRM follow-up reminders', 'Approval notifications'];
       document.getElementById('alertList').innerHTML = alerts.map(a => `
     <div class="d-flex align-items-center justify-content-between py-2" style="border-bottom:1px solid var(--border);">
       <span style="font-size:13px;">${a}</span>
-      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked onchange="Utils.showToast('Preference saved!','info')"></div>
+      <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked onchange="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')"></div>
     </div>`).join('');
 
       // Integrations
@@ -943,8 +946,8 @@
         <div style="font-size:12px;color:var(--text-muted);">${i.desc}</div>
       </div>
       ${i.connected
-          ? `<span class="badge-status badge-success" style="margin-right:8px;">Connected</span><button class="btn-erp btn-outline btn-sm" onclick="Utils.showToast('${i.name} disconnected','warning')">Disconnect</button>`
-          : `<button class="btn-erp btn-primary btn-sm" onclick="Utils.showToast('Connecting to ${i.name}...','info')">Connect</button>`}
+          ? `<span class="badge-status badge-success" style="margin-right:8px;">Demo only</span><button class="btn-erp btn-outline btn-sm" onclick="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')">Disconnect</button>`
+          : `<button class="btn-erp btn-primary btn-sm" onclick="Utils.showToast('Backend integration is not configured for ${i.name}.','info')">Connect</button>`}
     </div>`).join('');
     });
   </script>

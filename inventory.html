@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/polish.css" />
 </head>
 
 <body>
@@ -47,8 +48,8 @@
           <li class="nav-section-label">System</li>
           <li class="nav-item"><a href="settings.html" class="nav-link" data-tooltip="Settings"><i
                 class="bi bi-gear-fill nav-icon"></i><span class="nav-label">Settings</span></a></li>
-          <li class="nav-item"><a href="#" class="nav-link" data-tooltip="Logout"><i
-                class="bi bi-box-arrow-left nav-icon"></i><span class="nav-label">Logout</span></a></li>
+          <li class="nav-item"><a href="login.html" class="nav-link" data-tooltip="Exit demo"><i
+                class="bi bi-box-arrow-left nav-icon"></i><span class="nav-label">Exit demo</span></a></li>
         </ul>
       </nav>
       <div class="sidebar-footer">
@@ -64,18 +65,18 @@
 
     <div class="main-content">
       <header class="topbar">
-        <button class="topbar-toggle" id="sidebarToggle"><i class="bi bi-list" style="font-size:18px;"></i></button>
+        <button class="topbar-toggle" id="sidebarToggle" aria-label="Toggle navigation"><i class="bi bi-list" style="font-size:18px;"></i></button>
         <div class="topbar-breadcrumb"><span class="breadcrumb-trail text-muted-erp">Operations</span><i
             class="bi bi-chevron-right text-muted-erp" style="font-size:10px;"></i><span
             class="current-page">Inventory</span></div>
-        <div class="topbar-actions">
-          <div class="dropdown"><button class="topbar-btn" data-bs-toggle="dropdown"><i class="bi bi-bell"
+        <div class="topbar-actions"><span class="demo-pill" title="Sample data — frontend demonstration">DEMO</span>
+          <div class="dropdown"><button class="topbar-btn" data-bs-toggle="dropdown" aria-label="Notifications"><i class="bi bi-bell"
                 style="font-size:14px;"></i><span class="notif-badge"></span></button>
             <ul class="dropdown-menu dropdown-menu-end">
               <li><a class="dropdown-item" href="#">2 low stock alerts</a></li>
             </ul>
           </div>
-          <div class="dropdown"><button class="topbar-profile" data-bs-toggle="dropdown">
+          <div class="dropdown"><button class="topbar-profile" data-bs-toggle="dropdown" aria-label="Account menu">
               <div class="profile-avatar">AD</div><span class="profile-name">Admin</span><i class="bi bi-chevron-down"
                 style="font-size:10px;color:var(--text-muted);"></i>
             </button>
@@ -84,7 +85,7 @@
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+              <li><a class="dropdown-item text-danger" href="login.html"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
             </ul>
           </div>
         </div>
@@ -156,7 +157,7 @@
             <div><strong style="color:#92400E;">Stock Alert:</strong> <span style="color:#78350F;">23 products are below
                 minimum reorder levels. 5 products are completely out of stock.</span></div>
             <button class="btn-erp btn-sm ms-auto" style="background:#D97706;color:#fff;border:none;"
-              onclick="Utils.showToast('Reorder requests sent to procurement!','success')">Auto Reorder</button>
+              onclick="Utils.showToast('Reordering requires an inventory backend.','info')">Auto Reorder</button>
           </div>
         </div>
 
@@ -366,7 +367,7 @@
         <div class="modal-footer">
           <button class="btn-erp btn-outline" data-bs-dismiss="modal">Cancel</button>
           <button class="btn-erp btn-primary"
-            onclick="Utils.showToast('Product added to inventory!');bootstrap.Modal.getInstance(document.getElementById('addProductModal')).hide();">Save
+            >Save
             Product</button>
         </div>
       </div>
@@ -401,7 +402,7 @@
         <div class="modal-footer">
           <button class="btn-erp btn-outline" data-bs-dismiss="modal">Cancel</button>
           <button class="btn-erp btn-primary"
-            onclick="Utils.showToast('Supplier added!');bootstrap.Modal.getInstance(document.getElementById('addSupplierModal')).hide();">Add
+            >Add
             Supplier</button>
         </div>
       </div>
@@ -412,6 +413,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
   <script src="assets/js/app.js"></script>
   <script src="assets/js/global.js"></script>
+  <script src="assets/js/ux.js"></script>
   <script>
     const products = [
       { name: 'Laptop Pro X1', sku: 'SKU-0101', cat: 'Electronics', supplier: 'TechSupply Co.', cost: '$820', price: '$1,299', stock: 142, res: 18, reorder: 20, sc: 'success', st: 'In Stock' },
@@ -425,33 +427,7 @@
       { name: 'Office Chair Ergo', sku: 'SKU-0402', cat: 'Home & Garden', supplier: 'Global Parts Inc.', cost: '$120', price: '$329', stock: 28, res: 5, reorder: 10, sc: 'success', st: 'In Stock' },
       { name: 'Bluetooth Speaker S5', sku: 'SKU-0105', cat: 'Electronics', supplier: 'TechSupply Co.', cost: '$32', price: '$89', stock: 5, res: 0, reorder: 20, sc: 'danger', st: 'Low Stock' },
     ];
-    const scMap = { success: 'badge-success', warning: 'badge-warning', danger: 'badge-danger' };
-    function renderProducts(data) {
-      document.getElementById('productTbody').innerHTML = data.map(p => `
-    <tr>
-      <td><input type="checkbox"></td>
-      <td><strong>${p.name}</strong></td>
-      <td style="font-size:11px;color:var(--text-muted);font-family:monospace;">${p.sku}</td>
-      <td>${p.cat}</td>
-      <td>${p.supplier}</td>
-      <td>${p.cost}</td>
-      <td style="font-weight:600;">${p.price}</td>
-      <td style="font-weight:600;${p.stock === 0 ? 'color:var(--danger)' : p.stock <= p.reorder ? 'color:var(--warning)' : 'color:var(--success)'}">${p.stock}</td>
-      <td>${p.res}</td>
-      <td>${p.reorder}</td>
-      <td><span class="badge-status badge-${p.sc}">${p.st}</span></td>
-      <td><div class="action-btns">
-        <button class="btn-erp btn-ghost btn-sm" title="View"><i class="bi bi-eye"></i></button>
-        <button class="btn-erp btn-ghost btn-sm" title="Edit"><i class="bi bi-pencil"></i></button>
-        <button class="btn-erp btn-danger-ghost btn-sm" title="Delete" onclick="Utils.showToast('Product deleted','danger')"><i class="bi bi-trash"></i></button>
-      </div></td>
-    </tr>`).join('');
-    }
-    function filterProducts(q) {
-      renderProducts(q ? products.filter(p => p.name.toLowerCase().includes(q.toLowerCase()) || p.sku.toLowerCase().includes(q.toLowerCase())) : products);
-    }
     document.addEventListener('DOMContentLoaded', () => {
-      renderProducts(products);
       ChartHelper.doughnutChart(document.getElementById('stockCatChart').getContext('2d'),
         ['Electronics', 'Sports', 'Home & Garden', 'Clothing', 'Other'],
         [42, 24, 16, 12, 6],
@@ -459,6 +435,7 @@
       );
     });
   </script>
+  <script src="assets/js/inventory-demo.js"></script>
 </body>
 
 </html>

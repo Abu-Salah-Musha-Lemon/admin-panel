@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/polish.css" />
 </head>
 <body>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
@@ -30,18 +31,18 @@
       <li class="nav-item"><a href="reports.html" class="nav-link" data-tooltip="Reports"><i class="bi bi-bar-chart-fill nav-icon"></i><span class="nav-label">Reports</span></a></li>
       <li class="nav-section-label">System</li>
       <li class="nav-item"><a href="settings.html" class="nav-link" data-tooltip="Settings"><i class="bi bi-gear-fill nav-icon"></i><span class="nav-label">Settings</span></a></li>
-      <li class="nav-item"><a href="#" class="nav-link" data-tooltip="Logout"><i class="bi bi-box-arrow-left nav-icon"></i><span class="nav-label">Logout</span></a></li>
+      <li class="nav-item"><a href="login.html" class="nav-link" data-tooltip="Exit demo"><i class="bi bi-box-arrow-left nav-icon"></i><span class="nav-label">Exit demo</span></a></li>
     </ul></nav>
     <div class="sidebar-footer"><div class="sidebar-user"><div class="user-avatar">AD</div><div class="user-info"><div class="user-name">Admin User</div><div class="user-role">Super Admin</div></div></div></div>
   </aside>
 
   <div class="main-content">
     <header class="topbar">
-      <button class="topbar-toggle" id="sidebarToggle"><i class="bi bi-list" style="font-size:18px;"></i></button>
+      <button class="topbar-toggle" id="sidebarToggle" aria-label="Toggle navigation"><i class="bi bi-list" style="font-size:18px;"></i></button>
       <div class="topbar-breadcrumb"><span class="breadcrumb-trail text-muted-erp">People & Finance</span><i class="bi bi-chevron-right text-muted-erp" style="font-size:10px;"></i><span class="current-page">Finance</span></div>
-      <div class="topbar-actions">
-        <div class="dropdown"><button class="topbar-btn" data-bs-toggle="dropdown"><i class="bi bi-bell" style="font-size:14px;"></i><span class="notif-badge"></span></button><ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item" href="#">3 invoices overdue</a></li></ul></div>
-        <div class="dropdown"><button class="topbar-profile" data-bs-toggle="dropdown"><div class="profile-avatar">AD</div><span class="profile-name">Admin</span><i class="bi bi-chevron-down" style="font-size:10px;color:var(--text-muted);"></i></button><ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item" href="settings.html"><i class="bi bi-person"></i> Profile</a></li><li><hr class="dropdown-divider"></li><li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-left"></i> Logout</a></li></ul></div>
+      <div class="topbar-actions"><span class="demo-pill" title="Sample data — frontend demonstration">DEMO</span>
+        <div class="dropdown"><button class="topbar-btn" data-bs-toggle="dropdown" aria-label="Notifications"><i class="bi bi-bell" style="font-size:14px;"></i><span class="notif-badge"></span></button><ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item" href="#">3 invoices overdue</a></li></ul></div>
+        <div class="dropdown"><button class="topbar-profile" data-bs-toggle="dropdown" aria-label="Account menu"><div class="profile-avatar">AD</div><span class="profile-name">Admin</span><i class="bi bi-chevron-down" style="font-size:10px;color:var(--text-muted);"></i></button><ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item" href="settings.html"><i class="bi bi-person"></i> Profile</a></li><li><hr class="dropdown-divider"></li><li><a class="dropdown-item text-danger" href="login.html"><i class="bi bi-box-arrow-left"></i> Logout</a></li></ul></div>
       </div>
     </header>
 
@@ -86,9 +87,9 @@
               <tbody>
                 <tr><td><strong>INV-3320</strong></td><td>Apex Solutions</td><td>May 1, 2026</td><td>May 31, 2026</td><td>$45,000</td><td>$45,000</td><td style="color:var(--success);">$0</td><td><span class="badge-status badge-success">Paid</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm" title="View"><i class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm" title="PDF"><i class="bi bi-file-pdf"></i></button></div></td></tr>
                 <tr><td><strong>INV-3319</strong></td><td>GlobalNet Inc.</td><td>Apr 15, 2026</td><td>May 15, 2026</td><td>$210,000</td><td>$150,000</td><td style="color:var(--warning);font-weight:600;">$60,000</td><td><span class="badge-status badge-warning">Partial</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-send"></i></button></div></td></tr>
-                <tr><td><strong>INV-3318</strong></td><td>Aurora Tech</td><td>Apr 1, 2026</td><td>May 1, 2026</td><td>$28,400</td><td>$0</td><td style="color:var(--danger);font-weight:600;">$28,400</td><td><span class="badge-status badge-danger">Overdue</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm" onclick="Utils.showToast('Payment reminder sent!','info')"><i class="bi bi-bell"></i></button></div></td></tr>
+                <tr><td><strong>INV-3318</strong></td><td>Aurora Tech</td><td>Apr 1, 2026</td><td>May 1, 2026</td><td>$28,400</td><td>$0</td><td style="color:var(--danger);font-weight:600;">$28,400</td><td><span class="badge-status badge-danger">Overdue</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm" onclick="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')"><i class="bi bi-bell"></i></button></div></td></tr>
                 <tr><td><strong>INV-3317</strong></td><td>Skyline Group</td><td>May 2, 2026</td><td>Jun 2, 2026</td><td>$89,000</td><td>$89,000</td><td style="color:var(--success);">$0</td><td><span class="badge-status badge-success">Paid</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-eye"></i></button><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-file-pdf"></i></button></div></td></tr>
-                <tr><td><strong>INV-3316</strong></td><td>Cascade Partners</td><td>May 3, 2026</td><td>Jun 3, 2026</td><td>$14,600</td><td>$0</td><td style="color:var(--text-muted);">$14,600</td><td><span class="badge-status badge-neutral">Draft</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-pencil"></i></button><button class="btn-erp btn-ghost btn-sm" onclick="Utils.showToast('Invoice sent!','success')"><i class="bi bi-send"></i></button></div></td></tr>
+                <tr><td><strong>INV-3316</strong></td><td>Cascade Partners</td><td>May 3, 2026</td><td>Jun 3, 2026</td><td>$14,600</td><td>$0</td><td style="color:var(--text-muted);">$14,600</td><td><span class="badge-status badge-neutral">Draft</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-pencil"></i></button><button class="btn-erp btn-ghost btn-sm" onclick="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')"><i class="bi bi-send"></i></button></div></td></tr>
               </tbody>
             </table>
           </div>
@@ -98,7 +99,7 @@
       <!-- Payments -->
       <div id="tab-payments" style="display:none;">
         <div class="card">
-          <div class="card-header"><h3 class="card-title">Payment Transactions</h3><button class="btn-erp btn-primary btn-sm" onclick="Utils.showToast('Recording payment...','info')"><i class="bi bi-plus"></i> Record Payment</button></div>
+          <div class="card-header"><h3 class="card-title">Payment Transactions</h3><button class="btn-erp btn-primary btn-sm" onclick="Utils.showToast('Payment recording requires a connected backend.','info')"><i class="bi bi-plus"></i> Record Payment</button></div>
           <div class="table-wrapper">
             <table class="erp-table">
               <thead><tr><th>Txn ID</th><th>Customer/Vendor</th><th>Date</th><th>Amount</th><th>Method</th><th>Reference</th><th>Type</th><th>Status</th></tr></thead>
@@ -128,7 +129,7 @@
               <tbody>
                 <tr><td>May 3, 2026</td><td>Travel</td><td>Flight NYC-LA for client meeting</td><td>Alice Johnson</td><td>$840</td><td><span class="badge-status badge-success">Approved</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-eye"></i></button></div></td></tr>
                 <tr><td>May 2, 2026</td><td>Software</td><td>Adobe Creative Suite annual</td><td>Emma Scott</td><td>$600</td><td><span class="badge-status badge-success">Approved</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-eye"></i></button></div></td></tr>
-                <tr><td>May 1, 2026</td><td>Office</td><td>Stationery and supplies Q2</td><td>David Kim</td><td>$280</td><td><span class="badge-status badge-warning">Pending</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm" onclick="Utils.showToast('Expense approved!','success')"><i class="bi bi-check-lg"></i></button><button class="btn-erp btn-danger-ghost btn-sm"><i class="bi bi-x-lg"></i></button></div></td></tr>
+                <tr><td>May 1, 2026</td><td>Office</td><td>Stationery and supplies Q2</td><td>David Kim</td><td>$280</td><td><span class="badge-status badge-warning">Pending</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm" onclick="Utils.showToast('Demo preview: this action needs a connected backend.', 'info')"><i class="bi bi-check-lg"></i></button><button class="btn-erp btn-danger-ghost btn-sm"><i class="bi bi-x-lg"></i></button></div></td></tr>
                 <tr><td>Apr 30, 2026</td><td>Marketing</td><td>Social media ads campaign</td><td>Emma Scott</td><td>$2,400</td><td><span class="badge-status badge-success">Approved</span></td><td><div class="action-btns"><button class="btn-erp btn-ghost btn-sm"><i class="bi bi-eye"></i></button></div></td></tr>
               </tbody>
             </table>
@@ -194,8 +195,8 @@
       </div>
       <div class="modal-footer">
         <button class="btn-erp btn-outline" data-bs-dismiss="modal">Cancel</button>
-        <button class="btn-erp btn-ghost" onclick="Utils.showToast('Invoice saved as draft','info');bootstrap.Modal.getInstance(document.getElementById('addInvoiceModal')).hide();">Save Draft</button>
-        <button class="btn-erp btn-primary" onclick="Utils.showToast('Invoice sent to customer!');bootstrap.Modal.getInstance(document.getElementById('addInvoiceModal')).hide();">Send Invoice</button>
+        <button class="btn-erp btn-ghost" onclick="Utils.showToast('Demo preview: this action needs a connected backend.', 'info');bootstrap.Modal.getInstance(document.getElementById('addInvoiceModal')).hide();">Save Draft</button>
+        <button class="btn-erp btn-primary" onclick="Utils.showToast('Demo preview: this action needs a connected backend.', 'info');bootstrap.Modal.getInstance(document.getElementById('addInvoiceModal')).hide();">Send Invoice</button>
       </div>
     </div>
   </div>
@@ -218,7 +219,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn-erp btn-outline" data-bs-dismiss="modal">Cancel</button>
-        <button class="btn-erp btn-primary" onclick="Utils.showToast('Expense submitted for approval!');bootstrap.Modal.getInstance(document.getElementById('addExpenseModal')).hide();">Submit</button>
+        <button class="btn-erp btn-primary" onclick="Utils.showToast('Demo preview: this action needs a connected backend.', 'info');bootstrap.Modal.getInstance(document.getElementById('addExpenseModal')).hide();">Submit</button>
       </div>
     </div>
   </div>
@@ -228,6 +229,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/global.js"></script>
+  <script src="assets/js/ux.js"></script>
 <script>
 function showFinTab(tab, el) {
   ['invoices','payments','expenses','pl'].forEach(t => { document.getElementById('tab-'+t).style.display = t===tab?'':'none'; });
